@@ -1,0 +1,12 @@
+//
+// Prefix header for all source files of the 'Taggr' target in the 'Taggr' project
+//
+
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+    #import <UIKit/UIKit.h>
+	#import <CoreData/CoreData.h>
+	#import "exoLib.h"
+	#import "exoAdditions.h"
+
+#endif
