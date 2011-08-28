@@ -8,18 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "AppDelegate_Shared.h"
+#import "Three20/Three20.h"
 
-typedef enum taggerTabIndex{
-	taggerTabIndexName,
-	taggerTabIndexDate,
-	taggerTabIndexNearby,
-	taggerTabIndexFaves
-}taggerTabIndex;
 
 @interface AppDelegate_iPhone : AppDelegate_Shared {
 	
-		
-	UITabBarController *		_mainTabBar;
 }
 
 

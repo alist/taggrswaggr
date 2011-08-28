@@ -9,10 +9,25 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 
+
+//nsuser defaults for faves
+
+typedef enum taggerTabIndex{
+	taggerTabIndexName,
+	taggerTabIndexDate,
+	taggerTabIndexNearby,
+	taggerTabIndexFaves
+}taggerTabIndex;
+
+
 @interface AppDelegate_Shared : NSObject <UIApplicationDelegate> {
     
     UIWindow *window;
+	
+	UITabBarController *		_mainTabBar;
     
+	BOOL						_needsPrePopulate;
+	
 @private
     NSManagedObjectContext *managedObjectContext_;
     NSManagedObjectModel *managedObjectModel_;
@@ -27,6 +42,8 @@
 
 - (NSURL *)applicationDocumentsDirectory;
 - (void)saveContext;
+
++(AppDelegate_Shared*)sharedDelegate;
 
 @end
 

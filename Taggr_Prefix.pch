@@ -8,5 +8,6 @@
 	#import <CoreData/CoreData.h>
 	#import "exoLib.h"
 	#import "exoAdditions.h"
+	#import "Three20/Three20.h"
 
 #endif

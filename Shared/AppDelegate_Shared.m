@@ -7,15 +7,61 @@
 //
 
 #import "AppDelegate_Shared.h"
+#import "tagTTDataSource.h"
+#import "taggerNameViewController.h"
 
 
 @implementation AppDelegate_Shared
 
 @synthesize window;
 
-
++(AppDelegate_Shared*)sharedDelegate{
+	
+	return (AppDelegate_Shared*)[[UIApplication sharedApplication] delegate];
+}
 #pragma mark -
 #pragma mark Application lifecycle
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
+    
+	[TTStyleSheet setGlobalStyleSheet:[[[TTDefaultStyleSheet alloc]autorelease] init]];
+	
+	//	UINavigationController *	_favesNavigationController		=		[[UINavigationController alloc] initWithRootViewController:[[[UITableViewController alloc] init] autorelease]];
+	//	[_favesNavigationController setTabBarItem:[[[UITabBarItem alloc] initWithTitle:@"faves" image:nil tag:taggerTabIndexFaves] autorelease]];
+	//	
+	//	
+	//	UINavigationController *	_nearbyNavigationController		=		[[UINavigationController alloc] initWithRootViewController:[[[UITableViewController alloc] init] autorelease]];
+	//	[_nearbyNavigationController setTabBarItem:[[[UITabBarItem alloc] initWithTitle:@"nearby" image:nil tag:taggerTabIndexNearby] autorelease]];
+	//
+	//
+	//	UINavigationController *	_dateNavigationController		=		[[UINavigationController alloc] initWithRootViewController:[[[UITableViewController alloc] init] autorelease]];
+	//	[_dateNavigationController setTabBarItem:[[[UITabBarItem alloc] initWithTitle:@"date" image:nil tag:taggerTabIndexDate] autorelease]];
+	//
+	
+	TTNavigator* navigator		= [TTNavigator navigator];
+	navigator.window			= window;
+	TTURLMap* map				= navigator.URLMap;
+	
+		
+	UINavigationController *	nameNavigationController		=	[[UINavigationController alloc] init];
+	
+	[map	from:@"tt://name/" toViewController:[taggerNameViewController class] selector:@selector(init)];
+	
+	
+	_mainTabBar =		[[UITabBarController alloc] init];
+	[_mainTabBar setViewControllers:[NSArray arrayWithObjects:nameNavigationController,nil] animated:TRUE];
+	
+	
+	[self.window addSubview:_mainTabBar.view];
+	
+	SRELS(nameNavigationController);
+	
+	[navigator openURLAction:[TTURLAction actionWithURLPath:@"tt://name/"]];
+	
+	
+    [self.window makeKeyAndVisible];
+    
+    return YES;
+}
 
 /**
  Save changes in the application's managed object context before the application terminates.
@@ -66,6 +112,12 @@
     if (coordinator != nil) {
         managedObjectContext_ = [[NSManagedObjectContext alloc] init];
         [managedObjectContext_ setPersistentStoreCoordinator:coordinator];
+		
+		if (_needsPrePopulate){
+			NSManagedObject* newTag				=	[NSEntityDescription insertNewObjectForEntityForName:@"tag" inManagedObjectContext:[self managedObjectContext]];
+			[newTag setValue:@"Taggr App" forKey:@"tagName"];
+			[managedObjectContext_ save:nil];
+		}
     }
     return managedObjectContext_;
 }
@@ -97,7 +149,12 @@
     }
     
     NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"Taggr.sqlite"];
-    
+	
+	
+	_needsPrePopulate = FALSE;
+	if ([[[[NSFileManager alloc] init] autorelease] fileExistsAtPath:[storeURL path]] == NO)
+		_needsPrePopulate = TRUE;
+		
     NSError *error = nil;
     persistentStoreCoordinator_ = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
     if (![persistentStoreCoordinator_ addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {
@@ -154,6 +211,7 @@
 
 
 - (void)dealloc {
+	SRELS(_mainTabBar);
     
     [managedObjectContext_ release];
     [managedObjectModel_ release];

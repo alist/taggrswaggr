@@ -271,7 +271,6 @@
 								<string>2860E386111B897F00E27156</string>
 								<string>28EEBF621118D79A00187D67</string>
 								<string>68BFD80B1340016A002AB719</string>
-								<string>2819307C112F81BE00ECF9B4</string>
 								<string>29B97315FDCFA39411CA2CEA</string>
 								<string>68BFD87E13400B72002AB719</string>
 								<string>68BFD7DF133FF1F9002AB719</string>
@@ -280,8 +279,8 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>21</integer>
-									<integer>17</integer>
+									<integer>24</integer>
+									<integer>16</integer>
 									<integer>0</integer>
 								</array>
 							</array>
@@ -333,24 +332,23 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>685A472F1340326D0095A53B</string>
+										<string>6811173A135FE1BF0024C030</string>
 										<key>history</key>
 										<array>
-											<string>68BFD82713400604002AB719</string>
 											<string>68BFD82813400604002AB719</string>
 											<string>68BFD82913400604002AB719</string>
 											<string>68BFD82A13400604002AB719</string>
 											<string>68BFD82B13400604002AB719</string>
 											<string>68BFD82C13400604002AB719</string>
 											<string>68BFD82D13400604002AB719</string>
-											<string>68BFD82E13400604002AB719</string>
 											<string>68BFDA96134024C3002AB719</string>
 											<string>68BFDA98134024C3002AB719</string>
 											<string>68BFDAAB13402816002AB719</string>
 											<string>68BFDAAD13402816002AB719</string>
 											<string>68BFDAFE13402928002AB719</string>
-											<string>68BFDB1113402A4C002AB719</string>
-											<string>68BFDB1813402D15002AB719</string>
+											<string>68F989C81346B92200CA973B</string>
+											<string>68111739135FE1BF0024C030</string>
+											<string>68F989CA1346B92200CA973B</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -473,11 +471,11 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>685A47301340326D0095A53B</string>
+				<string>681116E9135FBDA70024C030</string>
 				<string>1CA23ED40692098700951B8B</string>
-				<string>685A47311340326D0095A53B</string>
+				<string>681116EA135FBDA70024C030</string>
 				<string>68BFD423133FEC70002AB719</string>
-				<string>685A47321340326D0095A53B</string>
+				<string>681116EB135FBDA70024C030</string>
 				<string>1CA23EDF0692099D00951B8B</string>
 				<string>1CA23EE00692099D00951B8B</string>
 				<string>1CA23EE10692099D00951B8B</string>
@@ -667,8 +665,6 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>685A47391340326D0095A53B</string>
-		<string>685A473A1340326D0095A53B</string>
 		<string>/Volumes/Secured/Documents/ExoMachina/pers/Taggr/Taggr.xcodeproj</string>
 	</array>
 	<key>WindowString</key>

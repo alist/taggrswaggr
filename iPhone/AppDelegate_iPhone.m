@@ -7,7 +7,6 @@
 //
 
 #import "AppDelegate_iPhone.h"
-#import "Three20/Three20.h"
 
 @implementation AppDelegate_iPhone
 
@@ -17,51 +16,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
     
-	[TTStyleSheet setGlobalStyleSheet:[[[TTDefaultStyleSheet alloc]autorelease] init]];
-	
-	UINavigationController *	_favesNavigationController		=		[[UINavigationController alloc] initWithRootViewController:[[[UITableViewController alloc] init] autorelease]];
-	[_favesNavigationController setTabBarItem:[[[UITabBarItem alloc] initWithTitle:@"faves" image:nil tag:taggerTabIndexFaves] autorelease]];
-	
-	
-	UINavigationController *	_nearbyNavigationController		=		[[UINavigationController alloc] initWithRootViewController:[[[UITableViewController alloc] init] autorelease]];
-	[_nearbyNavigationController setTabBarItem:[[[UITabBarItem alloc] initWithTitle:@"nearby" image:nil tag:taggerTabIndexNearby] autorelease]];
-
-
-	UINavigationController *	_dateNavigationController		=		[[UINavigationController alloc] initWithRootViewController:[[[UITableViewController alloc] init] autorelease]];
-	[_dateNavigationController setTabBarItem:[[[UITabBarItem alloc] initWithTitle:@"date" image:nil tag:taggerTabIndexDate] autorelease]];
-
-	
-	UITableViewController *		_nameViewController				=	[[UITableViewController alloc] init] ;
-	UINavigationController *	_nameNavigationController		=	[[UINavigationController alloc] initWithRootViewController:_nameViewController];
-	[_nameNavigationController setTabBarItem:[[[UITabBarItem alloc] initWithTitle:@"name" image:nil tag:taggerTabIndexName] autorelease]];
-	TTPickerTextField * bubbleTextField =		[[TTPickerTextField alloc] initWithFrame:CGRectMake(0, 0, 320, 40)];
-	bubbleTextField.autocorrectionType = UITextAutocorrectionTypeNo;
-    bubbleTextField.autocapitalizationType = UITextAutocapitalizationTypeNone;
-    bubbleTextField.rightViewMode = UITextFieldViewModeAlways;
-//    bubbleTextField.delegate = self;
-    bubbleTextField.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-    [bubbleTextField sizeToFit];
-	
-	[bubbleTextField addCellWithObject:[NSString stringWithString:@"Initial Typin!"]];
-	[[_nameViewController tableView] setTableHeaderView:bubbleTextField];
-	
-
-	SRELS(bubbleTextField);
-	
-	_mainTabBar =		[[UITabBarController alloc] init];
-	[_mainTabBar setViewControllers:[NSArray arrayWithObjects:_nameNavigationController,_dateNavigationController,_nearbyNavigationController,_favesNavigationController,nil] animated:TRUE];
-	
-	[self.window addSubview:_mainTabBar.view];
-	
-	SRELS(_favesNavigationController);
-	SRELS(_nearbyNavigationController);
-	SRELS(_dateNavigationController);
-	SRELS(_nameNavigationController);
-	
-	
-	
-    [self.window makeKeyAndVisible];
-    
+	[super application:application didFinishLaunchingWithOptions:launchOptions];    
     return YES;
 }
 
@@ -119,7 +74,6 @@
 
 
 - (void)dealloc {
-	SRELS(_mainTabBar);
 	
 	[super dealloc];
 }

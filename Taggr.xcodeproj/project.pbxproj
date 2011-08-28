@@ -19,7 +19,6 @@
 		28EEBFDD1118E19E00187D67 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28EEBFDC1118E19E00187D67 /* CoreData.framework */; };
 		28EEC04B1118E28000187D67 /* AppDelegate_Shared.m in Sources */ = {isa = PBXBuildFile; fileRef = 28EEC04A1118E28000187D67 /* AppDelegate_Shared.m */; };
 		68BFD80E13400186002AB719 /* tag.m in Sources */ = {isa = PBXBuildFile; fileRef = 68BFD80D13400186002AB719 /* tag.m */; };
-		68BFD8181340033B002AB719 /* faveGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 68BFD8171340033B002AB719 /* faveGroup.m */; };
 		68BFD8A413400B76002AB719 /* libThree20UI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 68BFD8A113400B73002AB719 /* libThree20UI.a */; };
 		68BFD8AF13400C81002AB719 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68BFD8AE13400C81002AB719 /* QuartzCore.framework */; };
 		68BFD8E813400CAA002AB719 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68BFD8E513400CAA002AB719 /* AddressBook.framework */; };
@@ -35,6 +34,9 @@
 		68BFD98713400D5F002AB719 /* libThree20.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 68BFD94913400D34002AB719 /* libThree20.a */; };
 		68BFDA46134013AA002AB719 /* libexoLibLean.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 68BFDA3E1340130F002AB719 /* libexoLibLean.a */; };
 		68BFDAB5134028D5002AB719 /* Three20.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 68BFDAB4134028D5002AB719 /* Three20.bundle */; };
+		793B95A41403AD16005CDE06 /* tagTTDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 793B95A31403AD16005CDE06 /* tagTTDataSource.m */; };
+		793B95A71403B411005CDE06 /* taggerNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 793B95A61403B411005CDE06 /* taggerNameViewController.m */; };
+		79AA6AC3140651790088E087 /* tagViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79AA6AC2140651790088E087 /* tagViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -235,8 +237,6 @@
 		68BFD7DF133FF1F9002AB719 /* exoLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = exoLib.xcodeproj; path = ../../dev/exoLib/exoLib.xcodeproj; sourceTree = SOURCE_ROOT; };
 		68BFD80C13400186002AB719 /* tag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tag.h; sourceTree = "<group>"; };
 		68BFD80D13400186002AB719 /* tag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = tag.m; sourceTree = "<group>"; };
-		68BFD8161340033B002AB719 /* faveGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = faveGroup.h; sourceTree = "<group>"; };
-		68BFD8171340033B002AB719 /* faveGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = faveGroup.m; sourceTree = "<group>"; };
 		68BFD87E13400B72002AB719 /* Three20UI.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20UI.xcodeproj; path = ../Three20SRC/Three20UI/Three20UI.xcodeproj; sourceTree = SOURCE_ROOT; };
 		68BFD8AE13400C81002AB719 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		68BFD8E513400CAA002AB719 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
@@ -251,6 +251,12 @@
 		68BFD95513400D41002AB719 /* Three20UICommon.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20UICommon.xcodeproj; path = ../Three20SRC/Three20UICommon/Three20UICommon.xcodeproj; sourceTree = SOURCE_ROOT; };
 		68BFD95813400D41002AB719 /* Three20UINavigator.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20UINavigator.xcodeproj; path = ../Three20SRC/Three20UINavigator/Three20UINavigator.xcodeproj; sourceTree = SOURCE_ROOT; };
 		68BFDAB4134028D5002AB719 /* Three20.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Three20.bundle; path = ../Three20SRC/Three20.bundle; sourceTree = SOURCE_ROOT; };
+		793B95A21403AD16005CDE06 /* tagTTDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tagTTDataSource.h; sourceTree = "<group>"; };
+		793B95A31403AD16005CDE06 /* tagTTDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = tagTTDataSource.m; sourceTree = "<group>"; };
+		793B95A51403B411005CDE06 /* taggerNameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = taggerNameViewController.h; sourceTree = "<group>"; };
+		793B95A61403B411005CDE06 /* taggerNameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = taggerNameViewController.m; sourceTree = "<group>"; };
+		79AA6AC1140651790088E087 /* tagViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tagViewController.h; sourceTree = "<group>"; };
+		79AA6AC2140651790088E087 /* tagViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = tagViewController.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Taggr-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Taggr-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -304,6 +310,7 @@
 		28EEBF621118D79A00187D67 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				793B95A11403ACD8005CDE06 /* View */,
 				68BFD80B1340016A002AB719 /* logic */,
 				2819307C112F81BE00ECF9B4 /* Taggr.xcdatamodeld */,
 				28EEC0491118E28000187D67 /* AppDelegate_Shared.h */,
@@ -386,8 +393,8 @@
 			children = (
 				68BFD80C13400186002AB719 /* tag.h */,
 				68BFD80D13400186002AB719 /* tag.m */,
-				68BFD8161340033B002AB719 /* faveGroup.h */,
-				68BFD8171340033B002AB719 /* faveGroup.m */,
+				793B95A21403AD16005CDE06 /* tagTTDataSource.h */,
+				793B95A31403AD16005CDE06 /* tagTTDataSource.m */,
 			);
 			name = logic;
 			sourceTree = "<group>";
@@ -453,6 +460,17 @@
 				68BFD97813400D41002AB719 /* UINavigatorUnitTests.octest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		793B95A11403ACD8005CDE06 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				793B95A51403B411005CDE06 /* taggerNameViewController.h */,
+				793B95A61403B411005CDE06 /* taggerNameViewController.m */,
+				79AA6AC1140651790088E087 /* tagViewController.h */,
+				79AA6AC2140651790088E087 /* tagViewController.m */,
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -687,7 +705,9 @@
 				2819307D112F81BE00ECF9B4 /* Taggr.xcdatamodeld in Sources */,
 				2860E38A111B897F00E27156 /* AppDelegate_iPhone.m in Sources */,
 				68BFD80E13400186002AB719 /* tag.m in Sources */,
-				68BFD8181340033B002AB719 /* faveGroup.m in Sources */,
+				793B95A41403AD16005CDE06 /* tagTTDataSource.m in Sources */,
+				793B95A71403B411005CDE06 /* taggerNameViewController.m in Sources */,
+				79AA6AC3140651790088E087 /* tagViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

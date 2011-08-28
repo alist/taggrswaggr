@@ -22,6 +22,8 @@
 @property (nonatomic, retain) NSString * tagName;
 @property (nonatomic, retain) NSSet* explicitTags;
 @property (nonatomic, retain) NSSet* implicitTags;
-@property (nonatomic, retain) NSSet* faveGroupsIn;
+@property (nonatomic, retain) NSDate * lastOpenedDate;
+@property (nonatomic, retain) NSNumber * timesOpened;
+
 
 @end

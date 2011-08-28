@@ -20,6 +20,8 @@
 @dynamic tagName;
 @dynamic explicitTags;
 @dynamic implicitTags;
-@dynamic faveGroupsIn;
+@dynamic lastOpenedDate;
+@dynamic timesOpened;
+
 
 @end
