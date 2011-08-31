@@ -8,7 +8,8 @@
 
 #import "AppDelegate_Shared.h"
 #import "tagTTDataSource.h"
-#import "taggerNameViewController.h"
+#import "taggrNameViewController.h"
+#import "taggrTabBarController.h"
 #import "tagViewController.h"
 #import "exoLocationManager.h"
 
@@ -27,37 +28,26 @@
 	[TTStyleSheet setGlobalStyleSheet:[[[TTDefaultStyleSheet alloc]autorelease] init]];
 	
 	//	UINavigationController *	_favesNavigationController		=		[[UINavigationController alloc] initWithRootViewController:[[[UITableViewController alloc] init] autorelease]];
-	//	[_favesNavigationController setTabBarItem:[[[UITabBarItem alloc] initWithTitle:@"faves" image:nil tag:taggerTabIndexFaves] autorelease]];
+	//	[_favesNavigationController setTabBarItem:[[[UITabBarItem alloc] initWithTitle:@"faves" image:nil tag:taggrTabIndexFaves] autorelease]];
 	//	
 	//	
 	//	UINavigationController *	_nearbyNavigationController		=		[[UINavigationController alloc] initWithRootViewController:[[[UITableViewController alloc] init] autorelease]];
-	//	[_nearbyNavigationController setTabBarItem:[[[UITabBarItem alloc] initWithTitle:@"nearby" image:nil tag:taggerTabIndexNearby] autorelease]];
+	//	[_nearbyNavigationController setTabBarItem:[[[UITabBarItem alloc] initWithTitle:@"nearby" image:nil tag:taggrTabIndexNearby] autorelease]];
 	//
 	//
 	//	UINavigationController *	_dateNavigationController		=		[[UINavigationController alloc] initWithRootViewController:[[[UITableViewController alloc] init] autorelease]];
-	//	[_dateNavigationController setTabBarItem:[[[UITabBarItem alloc] initWithTitle:@"date" image:nil tag:taggerTabIndexDate] autorelease]];
+	//	[_dateNavigationController setTabBarItem:[[[UITabBarItem alloc] initWithTitle:@"date" image:nil tag:taggrTabIndexDate] autorelease]];
 	//
 	
 	TTNavigator* navigator		= [TTNavigator navigator];
 	navigator.window			= window;
 	TTURLMap* map				= navigator.URLMap;
 	
-		
-	UINavigationController *	nameNavigationController		=	[[UINavigationController alloc] init];
-	
-	[map	from:@"tt://name/" toViewController:[taggerNameViewController class] selector:@selector(init)];
+	[map	from:@"tt://name/" toViewController:[taggrNameViewController class] selector:@selector(init)];
 	[map	from:@"tt://tag/(initWithTagName:)" toViewController:[tagViewController class] selector:@selector(initWithTagName:)];
+	[map 	from:@"tt://tabbar/" toViewController:[taggrTabBarController class] selector:@selector(init)];
 	
-	
-	_mainTabBar =		[[UITabBarController alloc] init];
-	[_mainTabBar setViewControllers:[NSArray arrayWithObjects:nameNavigationController,nil] animated:TRUE];
-	
-	
-	[self.window addSubview:_mainTabBar.view];
-	
-	SRELS(nameNavigationController);
-	
-	[navigator openURLAction:[TTURLAction actionWithURLPath:@"tt://name/"]];
+	[navigator openURLAction:[TTURLAction actionWithURLPath:@"tt://tabbar/"]];
 	
 	
 	[[exoLocationManager sharedLocationManager] setLocationUsageReason:@"Taggr automatically associates tags with your current location; you can easily remove this data."];
@@ -164,22 +154,8 @@
     NSError *error = nil;
     persistentStoreCoordinator_ = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
     if (![persistentStoreCoordinator_ addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {
+		[[NSFileManager defaultManager] removeItemAtURL:storeURL error:nil];
         /*
-         Replace this implementation with code to handle the error appropriately.
-         
-         abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. If it is not possible to recover from the error, display an alert panel that instructs the user to quit the application by pressing the Home button.
-         
-         Typical reasons for an error here include:
-         * The persistent store is not accessible;
-         * The schema for the persistent store is incompatible with current managed object model.
-         Check the error message to determine what the actual problem was.
-         
-         
-         If the persistent store is not accessible, there is typically something wrong with the file path. Often, a file URL is pointing into the application's resources directory instead of a writeable directory.
-         
-         If you encounter schema incompatibility errors during development, you can reduce their frequency by:
-         * Simply deleting the existing store:
-         [[NSFileManager defaultManager] removeItemAtURL:storeURL error:nil]
          
          * Performing automatic lightweight migration by passing the following dictionary as the options parameter: 
          [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:YES],NSMigratePersistentStoresAutomaticallyOption, [NSNumber numberWithBool:YES], NSInferMappingModelAutomaticallyOption, nil];

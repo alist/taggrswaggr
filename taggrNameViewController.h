@@ -1,5 +1,5 @@
 //
-//  taggerNameViewController.h
+//  taggrNameViewController.h
 //  Taggr
 //
 //  Created by Alexander List on 8/23/11.
@@ -13,7 +13,7 @@
 #import "taggrCellPickerTextField.h"
 
 
-@interface taggerNameViewController : TTTableViewController <TTTextEditorDelegate, UITextFieldDelegate, taggrCellPickerTextFieldDelegate>{
+@interface taggrNameViewController : TTTableViewController <TTTextEditorDelegate, UITextFieldDelegate, taggrCellPickerTextFieldDelegate>{
 	taggrCellPickerTextField * _bubbleTextField;
 }
 

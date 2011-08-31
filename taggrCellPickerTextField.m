@@ -13,13 +13,13 @@
 #import "AppDelegate_Shared.h"
 
 @implementation taggrCellPickerTextField
-@synthesize taggerCellPickerDelegate = _taggerCellPickerDelegate;
+@synthesize taggrCellPickerDelegate = _taggrCellPickerDelegate;
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code here.
-		[self setTaggerCellPickerDelegate:self];
+		[self setTaggrCellPickerDelegate:self];
 		[self setDelegate:self];
 		[self setClearButtonMode:UITextFieldViewModeWhileEditing];
 		self.autocorrectionType = UITextAutocorrectionTypeNo;
@@ -39,7 +39,7 @@
 
 -(void) dealloc{
 	
-	_taggerCellPickerDelegate		= nil;
+	_taggrCellPickerDelegate		= nil;
 
 	[super dealloc];
 }
@@ -76,13 +76,13 @@
 
 #pragma mark taggrCellPickerTextFieldDelegate
 -(void) taggrCellPickerTextFieldDidSelectCellWithObject:(id)cellObject withPicker:(taggrCellPickerTextField*)picker{
-	if ([_taggerCellPickerDelegate respondsToSelector:@selector(taggrCellPickerTextFieldDidSelectCellWithObject:withPicker:)]){
-		[_taggerCellPickerDelegate taggrCellPickerTextFieldDidSelectCellWithObject:cellObject withPicker:self];
+	if ([_taggrCellPickerDelegate respondsToSelector:@selector(taggrCellPickerTextFieldDidSelectCellWithObject:withPicker:)]){
+		[_taggrCellPickerDelegate taggrCellPickerTextFieldDidSelectCellWithObject:cellObject withPicker:self];
 	}
 }
 -(void) taggrCellPickerTextFieldDidTapSelectedCellWithObject:(id)cellObject withPicker:(taggrCellPickerTextField*)picker{
-	if ([_taggerCellPickerDelegate respondsToSelector:@selector(taggrCellPickerTextFieldDidTapSelectedCellWithObject:withPicker:)]){
-		[_taggerCellPickerDelegate taggrCellPickerTextFieldDidTapSelectedCellWithObject:cellObject withPicker:self];
+	if ([_taggrCellPickerDelegate respondsToSelector:@selector(taggrCellPickerTextFieldDidTapSelectedCellWithObject:withPicker:)]){
+		[_taggrCellPickerDelegate taggrCellPickerTextFieldDidTapSelectedCellWithObject:cellObject withPicker:self];
 	}else
 	if (StringHasText(cellObject)){
 		[self openTagWithString:cellObject];
@@ -125,8 +125,8 @@
 		[self setText:@" "];
 	}
 	
-	if ([_taggerCellPickerDelegate respondsToSelector:@selector(taggrCellPickerModifiedCells:)]) {
-		[_taggerCellPickerDelegate taggrCellPickerModifiedCells:self];
+	if ([_taggrCellPickerDelegate respondsToSelector:@selector(taggrCellPickerModifiedCells:)]) {
+		[_taggrCellPickerDelegate taggrCellPickerModifiedCells:self];
 	}
 
 	
@@ -135,14 +135,14 @@
 }
 
 -(void) textFieldDidEndEditing:(UITextField *)textField{
-	if ([_taggerCellPickerDelegate respondsToSelector:@selector(taggrCellPickerModifiedCells:)]) {
-		[_taggerCellPickerDelegate taggrCellPickerModifiedCells:self];
+	if ([_taggrCellPickerDelegate respondsToSelector:@selector(taggrCellPickerModifiedCells:)]) {
+		[_taggrCellPickerDelegate taggrCellPickerModifiedCells:self];
 	}
 }
 
 -(void) textFieldDidResize:(TTPickerTextField*)field{
-	if ([_taggerCellPickerDelegate respondsToSelector:@selector(taggrCellPickerDidResize:)]) {
-		[_taggerCellPickerDelegate taggrCellPickerDidResize:self];
+	if ([_taggrCellPickerDelegate respondsToSelector:@selector(taggrCellPickerDidResize:)]) {
+		[_taggrCellPickerDelegate taggrCellPickerDidResize:self];
 	}
 }
 

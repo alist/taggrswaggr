@@ -21,10 +21,10 @@
 
 
 @interface taggrCellPickerTextField : TTPickerTextField <taggrCellPickerTextFieldDelegate, TTTextEditorDelegate, UITextFieldDelegate>{
-	id<taggrCellPickerTextFieldDelegate> _taggerCellPickerDelegate;
+	id<taggrCellPickerTextFieldDelegate> _taggrCellPickerDelegate;
 }
 
-@property (nonatomic, assign) id<taggrCellPickerTextFieldDelegate> taggerCellPickerDelegate;
+@property (nonatomic, assign) id<taggrCellPickerTextFieldDelegate> taggrCellPickerDelegate;
 
 -(void) openTagWithString:(NSString*)tagName;
 

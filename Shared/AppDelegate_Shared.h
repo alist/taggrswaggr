@@ -12,12 +12,12 @@
 
 //nsuser defaults for faves
 
-typedef enum taggerTabIndex{
-	taggerTabIndexName,
-	taggerTabIndexDate,
-	taggerTabIndexNearby,
-	taggerTabIndexFaves
-}taggerTabIndex;
+typedef enum taggrTabIndex{
+	taggrTabIndexName,
+	taggrTabIndexDate,
+	taggrTabIndexNearby,
+	taggrTabIndexFaves
+}taggrTabIndex;
 
 
 @interface AppDelegate_Shared : NSObject <UIApplicationDelegate> {

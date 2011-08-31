@@ -1,16 +1,16 @@
 //
-//  taggerNameViewController.m
+//  taggrNameViewController.m
 //  Taggr
 //
 //  Created by Alexander List on 8/23/11.
 //  Copyright 2011 ExoMachina. All rights reserved.
 //
 
-#import "taggerNameViewController.h"
+#import "taggrNameViewController.h"
 #import "tag.h"
 #import "AppDelegate_Shared.h"
 
-@implementation taggerNameViewController
+@implementation taggrNameViewController
 @synthesize tagDataSource;
 
 -(id) init{
@@ -20,7 +20,7 @@
 		[self setDataSource:dataSource];
 		SRELS(dataSource);
 		
-		[self setTabBarItem:[[[UITabBarItem alloc] initWithTitle:@"name" image:nil tag:taggerTabIndexName] autorelease]];
+		[self setTabBarItem:[[[UITabBarItem alloc] initWithTitle:@"name" image:nil tag:taggrTabIndexName] autorelease]];
 		[self setTitle:@"Taggr"];
 	}
 	
@@ -32,7 +32,7 @@
 	[super viewDidLoad];
 	
 	_bubbleTextField =		[[taggrCellPickerTextField alloc] initWithFrame:CGRectMake(0, 0, 320, 40)];
-	[_bubbleTextField setTaggerCellPickerDelegate:self];
+	[_bubbleTextField setTaggrCellPickerDelegate:self];
 	[_bubbleTextField setDataSource:self.dataSource];
 	
 	[self setAutoresizesForKeyboard:TRUE];
@@ -69,7 +69,7 @@
 
 
 #pragma mark delegation
-#pragma mark taggerCellPicker
+#pragma mark taggrCellPicker
 -(void)		taggrCellPickerModifiedCells:(taggrCellPickerTextField*)picker{
 	//SAVE or something
 }

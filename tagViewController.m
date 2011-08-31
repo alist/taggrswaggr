@@ -73,7 +73,7 @@
 		tagTTDataSource *			dataSource					=	[[tagTTDataSource alloc] init];
 		[_explicitTagsField setDataSource:dataSource];
 		SRELS(dataSource);
-		[_explicitTagsField setTaggerCellPickerDelegate:self];
+		[_explicitTagsField setTaggrCellPickerDelegate:self];
 		[_explicitTagsField setReturnKeyType:UIReturnKeyDone];
 		_explicitTagsField.autoresizingMask = UIViewAutoresizingFlexibleWidth;
 		[_explicitTagsField sizeToFit];
@@ -105,7 +105,7 @@
 }
 
 #pragma mark delegation
-#pragma mark taggerCellPicker
+#pragma mark taggrCellPicker
 -(void)		taggrCellPickerModifiedCells:(taggrCellPickerTextField*)picker{
 	//SAVE or something
 	NSArray * tagNames		=	[picker cells];

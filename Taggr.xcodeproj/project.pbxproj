@@ -35,7 +35,8 @@
 		68BFDA46134013AA002AB719 /* libexoLibLean.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 68BFDA3E1340130F002AB719 /* libexoLibLean.a */; };
 		68BFDAB5134028D5002AB719 /* Three20.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 68BFDAB4134028D5002AB719 /* Three20.bundle */; };
 		793B95A41403AD16005CDE06 /* tagTTDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 793B95A31403AD16005CDE06 /* tagTTDataSource.m */; };
-		793B95A71403B411005CDE06 /* taggerNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 793B95A61403B411005CDE06 /* taggerNameViewController.m */; };
+		793B95A71403B411005CDE06 /* taggrNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 793B95A61403B411005CDE06 /* taggrNameViewController.m */; };
+		79418099140DB8DE000E0113 /* taggrTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79418098140DB8DE000E0113 /* taggrTabBarController.m */; };
 		794ADC15140BD9300095FEDB /* taggrCellPickerTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 794ADC14140BD92F0095FEDB /* taggrCellPickerTextField.m */; };
 		79AA6AC3140651790088E087 /* tagViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79AA6AC2140651790088E087 /* tagViewController.m */; };
 /* End PBXBuildFile section */
@@ -254,8 +255,10 @@
 		68BFDAB4134028D5002AB719 /* Three20.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Three20.bundle; path = ../Three20SRC/Three20.bundle; sourceTree = SOURCE_ROOT; };
 		793B95A21403AD16005CDE06 /* tagTTDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tagTTDataSource.h; sourceTree = "<group>"; };
 		793B95A31403AD16005CDE06 /* tagTTDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = tagTTDataSource.m; sourceTree = "<group>"; };
-		793B95A51403B411005CDE06 /* taggerNameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = taggerNameViewController.h; sourceTree = "<group>"; };
-		793B95A61403B411005CDE06 /* taggerNameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = taggerNameViewController.m; sourceTree = "<group>"; };
+		793B95A51403B411005CDE06 /* taggrNameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; path = taggrNameViewController.h; sourceTree = "<group>"; };
+		793B95A61403B411005CDE06 /* taggrNameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = taggrNameViewController.m; sourceTree = "<group>"; };
+		79418097140DB8DE000E0113 /* taggrTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; path = taggrTabBarController.h; sourceTree = "<group>"; };
+		79418098140DB8DE000E0113 /* taggrTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = taggrTabBarController.m; sourceTree = "<group>"; };
 		794ADC13140BD92F0095FEDB /* taggrCellPickerTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = taggrCellPickerTextField.h; sourceTree = "<group>"; };
 		794ADC14140BD92F0095FEDB /* taggrCellPickerTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = taggrCellPickerTextField.m; sourceTree = "<group>"; };
 		79AA6AC1140651790088E087 /* tagViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tagViewController.h; sourceTree = "<group>"; };
@@ -478,8 +481,10 @@
 		79B17616140D0E4C000D6EC5 /* Tag Discovery */ = {
 			isa = PBXGroup;
 			children = (
-				793B95A51403B411005CDE06 /* taggerNameViewController.h */,
-				793B95A61403B411005CDE06 /* taggerNameViewController.m */,
+				793B95A51403B411005CDE06 /* taggrNameViewController.h */,
+				793B95A61403B411005CDE06 /* taggrNameViewController.m */,
+				79418097140DB8DE000E0113 /* taggrTabBarController.h */,
+				79418098140DB8DE000E0113 /* taggrTabBarController.m */,
 			);
 			name = "Tag Discovery";
 			sourceTree = "<group>";
@@ -738,9 +743,10 @@
 				2860E38A111B897F00E27156 /* AppDelegate_iPhone.m in Sources */,
 				68BFD80E13400186002AB719 /* tag.m in Sources */,
 				793B95A41403AD16005CDE06 /* tagTTDataSource.m in Sources */,
-				793B95A71403B411005CDE06 /* taggerNameViewController.m in Sources */,
+				793B95A71403B411005CDE06 /* taggrNameViewController.m in Sources */,
 				79AA6AC3140651790088E087 /* tagViewController.m in Sources */,
 				794ADC15140BD9300095FEDB /* taggrCellPickerTextField.m in Sources */,
+				79418099140DB8DE000E0113 /* taggrTabBarController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
