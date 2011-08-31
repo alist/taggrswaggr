@@ -43,6 +43,9 @@ typedef enum taggrTabIndex{
 - (NSURL *)applicationDocumentsDirectory;
 - (void)saveContext;
 
+-(void)applicationWillTerminate:(id)sender;
+-(void)applicationWillEnterBackground:(id)sender;
+
 +(AppDelegate_Shared*)sharedDelegate;
 
 @end

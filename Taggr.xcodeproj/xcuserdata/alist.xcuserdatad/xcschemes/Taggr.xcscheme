@@ -19,6 +19,20 @@
                ReferencedContainer = "container:Taggr.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "D2AAC07D0554694100DB518D"
+               BuildableName = "libexoLib.a"
+               BlueprintName = "exoLib"
+               ReferencedContainer = "container:../../dev/exoLib/exoLib.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction

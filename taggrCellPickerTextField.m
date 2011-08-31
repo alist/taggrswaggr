@@ -28,6 +28,7 @@
 		[self setReturnKeyType:UIReturnKeyDone];
 		self.autoresizingMask = UIViewAutoresizingFlexibleWidth;
 		[self sizeToFit];
+		[self setSearchesAutomatically:TRUE];
     }
     
     return self;
@@ -74,6 +75,20 @@
 }
 
 
+-(void)	addCellWithObject:(id)object{
+	NSString	* cellString	= nil;
+	
+	if ([object isKindOfClass:[TTTableTextItem class]])
+		cellString = [object text];
+	
+	if ([object isKindOfClass:[NSString class]])
+		cellString = object;
+	
+	if (StringHasText(cellString)){
+		[super addCellWithObject:cellString];
+	}
+}
+
 #pragma mark taggrCellPickerTextFieldDelegate
 -(void) taggrCellPickerTextFieldDidSelectCellWithObject:(id)cellObject withPicker:(taggrCellPickerTextField*)picker{
 	if ([_taggrCellPickerDelegate respondsToSelector:@selector(taggrCellPickerTextFieldDidSelectCellWithObject:withPicker:)]){
@@ -84,8 +99,9 @@
 	if ([_taggrCellPickerDelegate respondsToSelector:@selector(taggrCellPickerTextFieldDidTapSelectedCellWithObject:withPicker:)]){
 		[_taggrCellPickerDelegate taggrCellPickerTextFieldDidTapSelectedCellWithObject:cellObject withPicker:self];
 	}else
-	if (StringHasText(cellObject)){
-		[self openTagWithString:cellObject];
+	if (cellObject){
+		NSString	* cellString	= ([cellObject isKindOfClass:[TTTableTextItem class]])?[cellObject text]:cellObject;
+		[self openTagWithString:cellString];
 	}
 }
 
@@ -133,11 +149,12 @@
 	return FALSE;
 	
 }
+-(void)textFieldDidBeginEditing:(UITextField *)textField{
+	[self showSearchResults:TRUE];
+}
 
 -(void) textFieldDidEndEditing:(UITextField *)textField{
-	if ([_taggrCellPickerDelegate respondsToSelector:@selector(taggrCellPickerModifiedCells:)]) {
-		[_taggrCellPickerDelegate taggrCellPickerModifiedCells:self];
-	}
+	[self showSearchResults:NO];
 }
 
 -(void) textFieldDidResize:(TTPickerTextField*)field{
@@ -149,9 +166,27 @@
 -(BOOL) textFieldShouldClear:(UITextField *)textField{
 	[self removeAllCells];
 	[self setText:@""];
+	if ([_taggrCellPickerDelegate respondsToSelector:@selector(taggrCellPickerModifiedCells:)]) {
+		[_taggrCellPickerDelegate taggrCellPickerModifiedCells:self];
+	}
 	return TRUE;
 }
 
+-(void) textEditorDidChange:(TTTextEditor *)textEditor{
+	[[self dataSource] search:[textEditor text]];
+}
+
+-(void) textField:(TTPickerTextField *)textField didRemoveCellAtIndex:(NSInteger)cellIndex{
+	if ([_taggrCellPickerDelegate respondsToSelector:@selector(taggrCellPickerModifiedCells:)]) {
+		[_taggrCellPickerDelegate taggrCellPickerModifiedCells:self];
+	}
+}
+
+- (void)textField:(TTPickerTextField*)textField didAddCellAtIndex:(NSInteger)cellIndex {
+	if ([_taggrCellPickerDelegate respondsToSelector:@selector(taggrCellPickerModifiedCells:)]) {
+		[_taggrCellPickerDelegate taggrCellPickerModifiedCells:self];
+	}
+}
 
 -(void) addNewTag{
 	NSString * trimmedTagString	=	[[self text] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];

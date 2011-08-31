@@ -12,11 +12,17 @@
 	
 	NSFetchedResultsController	*	_fetchController;
 	
-	NSMutableArray* _delegates;
+	NSSet						*	_explicitlyReferencedTags;
+	
+	NSMutableArray*					_delegates;
 }
 @property (nonatomic, readonly) NSFetchedResultsController	*	fetchController;
 @property (nonatomic, readonly) NSManagedObjectContext *		objectContext;
+//setting this property causes a new predicate generation without "search text"
+@property (nonatomic, retain)	NSSet	*						explicitlyReferencedTags;
 
+-(NSPredicate*)	predicateForTagsMatchingString:(NSString*) searchString	withExplicitTagConnections:(NSSet*)	referencedTags;
+- (void)searchWithExplicitlyReferencedTags: (NSSet*) referencedTags searchText:(NSString*) searchText;
 - (void)search:	(NSString*)text;
 
 +(tag*)		tagMatchingTagName:(NSString*)tagName;

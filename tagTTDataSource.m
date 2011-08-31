@@ -13,7 +13,8 @@
 #import "TTModel.h"
 
 @implementation tagTTDataSource
-@synthesize fetchController, objectContext;;
+@synthesize fetchController, objectContext;
+@synthesize explicitlyReferencedTags = _explicitlyReferencedTags;
 
 
 #pragma mark public 
@@ -83,6 +84,7 @@
 		NSFetchRequest * request	= [[NSFetchRequest alloc] init];
 		[request setEntity:[NSEntityDescription entityForName:@"tag" inManagedObjectContext:_objectContext]];
 		[request setSortDescriptors:[NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"tagName" ascending:TRUE]]];
+		[request setPropertiesToFetch:[NSArray arrayWithObjects:@"tagName",nil]];
 		
 		_fetchController 			= [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:_objectContext sectionNameKeyPath:nil cacheName:nil];
 		[_fetchController setDelegate:self];
@@ -92,6 +94,45 @@
 		[_fetchController performFetch:&fetchError];
 	}
 	return _fetchController;
+}
+
+-(void) setExplicitlyReferencedTags:(NSSet *)explicitlyReferencedTags{
+	if ([explicitlyReferencedTags isEqualToSet:_explicitlyReferencedTags])
+		return;
+	
+	SRELS(_explicitlyReferencedTags);
+	_explicitlyReferencedTags	=	[explicitlyReferencedTags retain];
+}
+
+- (void)searchWithExplicitlyReferencedTags: (NSSet*) referencedTags searchText:(NSString*) searchText{
+//	if ([referencedTags isEqualToSet:_explicitlyReferencedTags] || (_explicitlyReferencedTags == nil && [referencedTags count] == 0))
+//		return;
+	[self setExplicitlyReferencedTags:referencedTags];
+	
+	[self search:searchText];
+}
+
+-(NSPredicate*)	predicateForTagsMatchingString:(NSString*) searchString	withExplicitTagConnections:(NSSet*)	referencedTags{
+	
+	NSPredicate * explicitTagsPredicate = nil;
+	if ([referencedTags count] >0){
+		explicitTagsPredicate			=	[NSPredicate predicateWithFormat:@"(SUBQUERY(explicitTags, $s, $s.tagName IN %@).@count != 0)",referencedTags];
+
+	}
+	
+	NSArray *searchTerms				= [[searchString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] componentsSeparatedByString:@" "];
+							
+	NSMutableArray *namePredicatePieces	=[NSMutableArray arrayWithCapacity:[searchTerms count]];
+	for (NSString *searchComponent in searchTerms){
+		if (StringHasText(searchComponent)){
+			NSPredicate *nextPredicate	= [NSPredicate predicateWithFormat:@"tagName CONTAINS[cd] %@",searchComponent];
+			[namePredicatePieces addObject:nextPredicate];
+		}
+	}
+	NSPredicate * tagNamePredicate		=	[NSCompoundPredicate andPredicateWithSubpredicates:namePredicatePieces];
+	
+	return [NSCompoundPredicate andPredicateWithSubpredicates:[NSArray arrayWithObjects:tagNamePredicate,explicitTagsPredicate, nil]];
+
 }
 
 #pragma mark NSObject
@@ -104,11 +145,19 @@
 }
 
 - (void)search:	(NSString*)text{
-	//string name
+	NSPredicate * searchPredicate	=	[self predicateForTagsMatchingString:text withExplicitTagConnections:[self explicitlyReferencedTags]];
+	[[[self fetchController] fetchRequest] setPredicate:searchPredicate];
+	NSError *fetchError = nil;
+	[_fetchController performFetch:&fetchError];
+	if (fetchError){
+		EXOLog(@"%@", [fetchError description]);
+	}
+	[self didChange];
 }
 
 
 -(void) dealloc{
+	SRELS(_explicitlyReferencedTags);
 	SRELS(_objectContext);
 	SRELS(_fetchController);
 	SRELS(_delegates);
@@ -155,6 +204,9 @@
 }
 
 - (id)tableView:(UITableView *)tableView objectForRowAtIndexPath:(NSIndexPath *)indexPath {
+	if ([self tableView:tableView numberOfRowsInSection:indexPath.section] <= indexPath.row)
+		return nil;
+	
 	tag * rowTag			= [[self fetchController] objectAtIndexPath:indexPath];
     TTTableTextItem* item	= [TTTableTextItem itemWithText:[rowTag tagName] URL:[NSString stringWithFormat:@"tt://tag/%@",[[rowTag tagName] UTF8EscapedString]]];
     return item;

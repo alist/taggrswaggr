@@ -72,6 +72,11 @@
 #pragma mark taggrCellPicker
 -(void)		taggrCellPickerModifiedCells:(taggrCellPickerTextField*)picker{
 	//SAVE or something
+	if ([picker isFirstResponder]){
+		 [[self tagDataSource] searchWithExplicitlyReferencedTags:[NSSet setWithArray:[picker cells]] searchText:nil];
+	}else{
+		[[self tagDataSource] setExplicitlyReferencedTags:[NSSet setWithArray:[picker cells]]];
+	}
 }
 -(void)		taggrCellPickerDidResize:(taggrCellPickerTextField *)picker{
 	if (picker == _bubbleTextField)

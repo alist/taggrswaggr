@@ -8,20 +8,6 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          isPathRelative = "0"
-         filePath = "/Users/alist/Documents/ExoMachina/pers/Three20SRC/Three20UI/Sources/TTTableViewController.m"
-         timestampString = "336246282.647272"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "495"
-         endingLineNumber = "495"
-         landmarkName = "-showEmpty:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         isPathRelative = "0"
          filePath = "/Users/alist/Documents/ExoMachina/dev/exoLib/exoLocationManager.m"
          timestampString = "336441479.660394"
          startingColumnNumber = "9223372036854775807"
@@ -49,14 +35,14 @@
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         isPathRelative = "0"
-         filePath = "/Users/alist/Documents/ExoMachina/dev/exoLib/exoLocationManager.m"
-         timestampString = "336441751.537125"
+         isPathRelative = "1"
+         filePath = "Shared/AppDelegate_Shared.m"
+         timestampString = "336493508.6969"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "201"
-         endingLineNumber = "201"
-         landmarkName = "-locationManager:didUpdateToLocation:fromLocation:"
+         startingLineNumber = "71"
+         endingLineNumber = "71"
+         landmarkName = "-applicationDidEnterBackground:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
