@@ -19,7 +19,6 @@
 @dynamic meterDistance;
 @dynamic tagName;
 @dynamic explicitTags;
-@dynamic implicitTags;
 @dynamic lastOpenedDate;
 @dynamic timesOpened;
 

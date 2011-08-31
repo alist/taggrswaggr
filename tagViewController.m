@@ -31,6 +31,12 @@
 	return self;
 }
 
+-(void) dealloc{
+	SRELS(_explicitTagsField);
+	
+	[super dealloc];
+}
+
 -(void) viewDidLoad{
 	self.title = _repTag.tagName;
 	
@@ -40,7 +46,13 @@
 	[self setDataSource:[self tagDisplayDataSource]];
 	
 	[_repTag setLastOpenedDate:[NSDate date]];
-	[_repTag setTimesOpened:[NSNumber numberWithInt:[[_repTag timesOpened] intValue] +1]];
+	
+	int timesOpened	=	[[_repTag timesOpened] intValue];
+	if (timesOpened == 0){
+		[self setTagEditModeEnabled:TRUE];
+	}
+	
+	[_repTag setTimesOpened:[NSNumber numberWithInt:timesOpened +1]];
 
 	[super viewDidLoad];
 }
@@ -84,6 +96,14 @@
 	return sectionedDataSource;
 }
 
+-(void) setTagEditModeEnabled:(BOOL)editingTagsEnabled{
+	if (editingTagsEnabled){
+		[_explicitTagsField becomeFirstResponder];
+	}else{
+		[_explicitTagsField resignFirstResponder];
+	}
+}
+
 #pragma mark delegation
 #pragma mark taggerCellPicker
 -(void)		taggrCellPickerModifiedCells:(taggrCellPickerTextField*)picker{
@@ -93,12 +113,10 @@
 
 	if (picker == _explicitTagsField)
 		[_repTag setExplicitTags:updateTags];
-	if (picker == _implicitTagsField)
-		[_repTag setImplicitTags:updateTags];
 
 }
 -(void)		taggrCellPickerDidResize:(taggrCellPickerTextField *)picker{
-	if (picker == _explicitTagsField || picker == _implicitTagsField){
+	if (picker == _explicitTagsField){
 		BOOL reBecomeFirstResponder = [picker isFirstResponder];
 		[self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:[[self dataSource] tableView:self.tableView indexPathForObject:picker]] withRowAnimation:UITableViewRowAnimationFade];
 		if (reBecomeFirstResponder) {

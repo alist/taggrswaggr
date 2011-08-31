@@ -15,11 +15,11 @@
 	tag *	_repTag;
 	
 	taggrCellPickerTextField * _explicitTagsField;
-	taggrCellPickerTextField * _implicitTagsField;
 }
 
 -(id) initWithTagName:(NSString*)tagName;
 
+-(void) setTagEditModeEnabled:(BOOL)editingTagsEnabled;
 
 -(TTSectionedDataSource*)	tagDisplayDataSource;
 @end
