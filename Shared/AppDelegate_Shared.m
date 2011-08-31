@@ -9,7 +9,8 @@
 #import "AppDelegate_Shared.h"
 #import "tagTTDataSource.h"
 #import "taggerNameViewController.h"
-
+#import "tagViewController.h"
+#import "exoLocationManager.h"
 
 @implementation AppDelegate_Shared
 
@@ -45,6 +46,7 @@
 	UINavigationController *	nameNavigationController		=	[[UINavigationController alloc] init];
 	
 	[map	from:@"tt://name/" toViewController:[taggerNameViewController class] selector:@selector(init)];
+	[map	from:@"tt://tag/(initWithTagName:)" toViewController:[tagViewController class] selector:@selector(initWithTagName:)];
 	
 	
 	_mainTabBar =		[[UITabBarController alloc] init];
@@ -57,6 +59,10 @@
 	
 	[navigator openURLAction:[TTURLAction actionWithURLPath:@"tt://name/"]];
 	
+	
+	[[exoLocationManager sharedLocationManager] setLocationUsageReason:@"Taggr automatically associates tags with your current location; you can easily remove this data."];
+	[[exoLocationManager sharedLocationManager] setLocationAccuracy:exoLocationManagerAccuracyScopeCloseBy];
+	[[exoLocationManager sharedLocationManager] startLocationService];
 	
     [self.window makeKeyAndVisible];
     

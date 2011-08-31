@@ -19,9 +19,9 @@
 
 - (void)search:	(NSString*)text;
 
--(tag*) tagMatchingTagName:(NSString*)tagName;
++(tag*)		tagMatchingTagName:(NSString*)tagName;
 
--(NSSet*)	tagsMatchingNames:(NSSet*)tagNames;
++(NSSet*)	tagsMatchingNames:(NSSet*)tagNames;
 
 
 

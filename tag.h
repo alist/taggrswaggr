@@ -26,4 +26,7 @@
 @property (nonatomic, retain) NSNumber * timesOpened;
 
 
+-(CLLocation*)tagLocation;
+-(void)setTagLocation:(CLLocation*)coordinate;
+
 @end

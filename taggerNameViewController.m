@@ -7,7 +7,6 @@
 //
 
 #import "taggerNameViewController.h"
-#import "TTPickerTextField.h"
 #import "tag.h"
 #import "AppDelegate_Shared.h"
 
@@ -20,7 +19,9 @@
 		tagTTDataSource *			dataSource					=	[[tagTTDataSource alloc] init];
 		[self setDataSource:dataSource];
 		SRELS(dataSource);
-
+		
+		[self setTabBarItem:[[[UITabBarItem alloc] initWithTitle:@"name" image:nil tag:taggerTabIndexName] autorelease]];
+		[self setTitle:@"Taggr"];
 	}
 	
 	return self;
@@ -30,25 +31,15 @@
 -(void)viewDidLoad{
 	[super viewDidLoad];
 	
-	_bubbleTextField =		[[TTPickerTextField alloc] initWithFrame:CGRectMake(0, 0, 320, 40)];
-	_bubbleTextField.autocorrectionType = UITextAutocorrectionTypeNo;
-    _bubbleTextField.autocapitalizationType = UITextAutocapitalizationTypeNone;
-    _bubbleTextField.rightViewMode = UITextFieldViewModeAlways;
-	[_bubbleTextField setDataSource:[self dataSource]];
-	[_bubbleTextField setDelegate:self];
-	[_bubbleTextField setReturnKeyType:UIReturnKeyDone];
-	
-    _bubbleTextField.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-    [_bubbleTextField sizeToFit];
+	_bubbleTextField =		[[taggrCellPickerTextField alloc] initWithFrame:CGRectMake(0, 0, 320, 40)];
+	[_bubbleTextField setTaggerCellPickerDelegate:self];
+	[_bubbleTextField setDataSource:self.dataSource];
 	
 	[self setAutoresizesForKeyboard:TRUE];
 	[self setVariableHeightRows:TRUE];
 	[[self tableView] setTableHeaderView:_bubbleTextField];
-	
-	[self setTitle:@"Taggr"];
-	
-	[self setTabBarItem:[[[UITabBarItem alloc] initWithTitle:@"name" image:nil tag:taggerTabIndexName] autorelease]];
-	
+	[[self.tableView tableHeaderView] setHeight:_bubbleTextField.height];
+			
 //	[[self navigationItem] setRightBarButtonItem:[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addTagButtonPressed)]autorelease]];
 	
 }
@@ -62,7 +53,7 @@
 
 	if (StringHasText(trimmedTagString)){
 		NSArray * tagNames		=	[_bubbleTextField cells];
-		NSSet * matchingTags	=  [[self tagDataSource] tagsMatchingNames:[NSSet setWithArray:tagNames]];
+		NSSet * matchingTags	=  [tagTTDataSource tagsMatchingNames:[NSSet setWithArray:tagNames]];
 		
 		tag* newTag				=	[NSEntityDescription insertNewObjectForEntityForName:@"tag" inManagedObjectContext:[[self tagDataSource] objectContext]];
 		[newTag setExplicitTags:matchingTags];
@@ -78,25 +69,13 @@
 
 
 #pragma mark delegation
-- (BOOL)textFieldShouldReturn:(UITextField *)textField{
-	
-	NSString * trimmedTagString	=	[[_bubbleTextField text] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-	if (StringHasText(trimmedTagString) == NO){
-		[_bubbleTextField resignFirstResponder];
-		return FALSE;
-	}
-	
-	tag * matchTag = [[self tagDataSource] tagMatchingTagName:trimmedTagString];
-	if (matchTag){
-		[_bubbleTextField addCellWithObject:[matchTag tagName]];
-		[_bubbleTextField setText:@""];
-	}else{
-		[self addNewTag];
-		[_bubbleTextField addCellWithObject:trimmedTagString];
-		[_bubbleTextField setText:@""];
-	}
-	
-	return FALSE;
+#pragma mark taggerCellPicker
+-(void)		taggrCellPickerModifiedCells:(taggrCellPickerTextField*)picker{
+	//SAVE or something
+}
+-(void)		taggrCellPickerDidResize:(taggrCellPickerTextField *)picker{
+	if (picker == _bubbleTextField)
+		[self.tableView setTableHeaderView:picker];
 
 }
 

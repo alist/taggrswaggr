@@ -17,14 +17,17 @@
 
 
 #pragma mark public 
--(tag*) tagMatchingTagName:(NSString*)tagName{
+
++(tag*) tagMatchingTagName:(NSString*)tagName{
+	NSManagedObjectContext * objectContext = [[AppDelegate_Shared sharedDelegate] managedObjectContext];
+
 	NSFetchRequest * request	= [[NSFetchRequest alloc] init];
-	[request setEntity:[NSEntityDescription entityForName:@"tag" inManagedObjectContext:_objectContext]];
+	[request setEntity:[NSEntityDescription entityForName:@"tag" inManagedObjectContext:objectContext]];
 	[request setSortDescriptors:[NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"tagName" ascending:FALSE]]];
 	NSPredicate * namePredicate	= [NSPredicate predicateWithFormat:@"tagName ==[cd] %@",tagName];
 	[request setPredicate:namePredicate];
 	
-	NSFetchedResultsController* fetchTagNameController 			= [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:_objectContext sectionNameKeyPath:nil cacheName:nil];
+	NSFetchedResultsController* fetchTagNameController 			= [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:objectContext sectionNameKeyPath:nil cacheName:nil];
 	SRELS(request);
 	
 	NSError *fetchError = nil;
@@ -43,14 +46,15 @@
 	return nil;
 }
 
--(NSSet*)	tagsMatchingNames:(NSSet*)tagNames{
++(NSSet*)	tagsMatchingNames:(NSSet*)tagNames{
+	NSManagedObjectContext * objectContext = [[AppDelegate_Shared sharedDelegate] managedObjectContext];
 	NSFetchRequest * request	= [[NSFetchRequest alloc] init];
-	[request setEntity:[NSEntityDescription entityForName:@"tag" inManagedObjectContext:_objectContext]];
+	[request setEntity:[NSEntityDescription entityForName:@"tag" inManagedObjectContext:objectContext]];
 	[request setSortDescriptors:[NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"tagName" ascending:FALSE]]];
 	NSPredicate * namePredicate	= [NSPredicate predicateWithFormat:@"tagName IN[cd] %@",tagNames];
 	[request setPredicate:namePredicate];
 	
-	NSFetchedResultsController* fetchTagNameController 			= [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:_objectContext sectionNameKeyPath:nil cacheName:nil];
+	NSFetchedResultsController* fetchTagNameController 			= [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:objectContext sectionNameKeyPath:nil cacheName:nil];
 	SRELS(request);
 	
 	NSError *fetchError = nil;
@@ -115,11 +119,9 @@
 
 #pragma mark NSFetchedResultsControllerDelegate
 -(void) controllerWillChangeContent:(NSFetchedResultsController *)controller{
-	[self beginUpdates];
 }
 
 -(void) controllerDidChangeContent:(NSFetchedResultsController *)controller{
-	[self endUpdates];
 }
 
 - (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath{
@@ -129,7 +131,7 @@
 		[self didDeleteObject:anObject atIndexPath:indexPath];
 		[self didInsertObject:anObject atIndexPath:newIndexPath];
 	}else if (type == NSFetchedResultsChangeUpdate){
-		[self didUpdateObject:anObject atIndexPath:newIndexPath];
+		[self didUpdateObject:anObject atIndexPath:indexPath];
 	}else if (type == NSFetchedResultsChangeDelete){
 		[self didDeleteObject:anObject atIndexPath:indexPath];
 	}
@@ -154,7 +156,7 @@
 
 - (id)tableView:(UITableView *)tableView objectForRowAtIndexPath:(NSIndexPath *)indexPath {
 	tag * rowTag			= [[self fetchController] objectAtIndexPath:indexPath];
-    TTTableTextItem* item	= [TTTableTextItem itemWithText:[rowTag tagName] URL:[NSString stringWithFormat:@"tt://name/%@",@"name"]];
+    TTTableTextItem* item	= [TTTableTextItem itemWithText:[rowTag tagName] URL:[NSString stringWithFormat:@"tt://tag/%@",[[rowTag tagName] UTF8EscapedString]]];
     return item;
 }
 

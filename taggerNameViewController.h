@@ -10,9 +10,11 @@
 #import <Foundation/Foundation.h>
 #import "Three20/Three20.h"
 #import "tagTTDataSource.h"
+#import "taggrCellPickerTextField.h"
 
-@interface taggerNameViewController : TTTableViewController <TTTextEditorDelegate, UITextFieldDelegate>{
-	TTPickerTextField * _bubbleTextField;
+
+@interface taggerNameViewController : TTTableViewController <TTTextEditorDelegate, UITextFieldDelegate, taggrCellPickerTextFieldDelegate>{
+	taggrCellPickerTextField * _bubbleTextField;
 }
 
 @property (nonatomic, readonly) tagTTDataSource *tagDataSource;

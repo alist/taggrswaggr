@@ -7,10 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Three20.h"
+#import "tag.h"
+#import "taggrCellPickerTextField.h"
 
-@interface tagViewController : UIViewController{
+@interface tagViewController : TTTableViewController <taggrCellPickerTextFieldDelegate>{
+	tag *	_repTag;
 	
+	taggrCellPickerTextField * _explicitTagsField;
+	taggrCellPickerTextField * _implicitTagsField;
 }
 
+-(id) initWithTagName:(NSString*)tagName;
 
+
+-(TTSectionedDataSource*)	tagDisplayDataSource;
 @end
