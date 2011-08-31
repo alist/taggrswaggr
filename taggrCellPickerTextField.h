@@ -26,6 +26,8 @@
 
 @property (nonatomic, assign) id<taggrCellPickerTextFieldDelegate> taggerCellPickerDelegate;
 
+-(void) openTagWithString:(NSString*)tagName;
+
 - (void)addCellsWithObjects:(NSArray*)objects;
 
 -(void) addNewTag;

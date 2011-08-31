@@ -85,10 +85,21 @@
 		[_taggerCellPickerDelegate taggrCellPickerTextFieldDidTapSelectedCellWithObject:cellObject withPicker:self];
 	}else
 	if (StringHasText(cellObject)){
-		tag * tagForObject	=	[tagTTDataSource tagMatchingTagName:cellObject];
-		if (StringHasText([tagForObject tagName])){
-			[[TTNavigator navigator] openURLAction:[[TTURLAction actionWithURLPath:[NSString stringWithFormat:@"tt://tag/%@",[[tagForObject tagName] UTF8EscapedString]]] applyAnimated:YES]];
-		}
+		[self openTagWithString:cellObject];
+	}
+}
+
+
+-(void) openTagWithString:(NSString*)tagName{
+	NSString * trimmedTagString	=	[tagName stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+
+	if (StringHasText(trimmedTagString) == NO){
+		return;
+	}
+	
+	tag * tagForObject	=	[tagTTDataSource tagMatchingTagName:trimmedTagString];
+	if (StringHasText([tagForObject tagName])){
+		[[TTNavigator navigator] openURLAction:[[TTURLAction actionWithURLPath:[NSString stringWithFormat:@"tt://tag/%@",[[tagForObject tagName] UTF8EscapedString]]] applyAnimated:YES]];
 	}
 }
 
@@ -152,6 +163,7 @@
 		tag* newTag				=	[NSEntityDescription insertNewObjectForEntityForName:@"tag" inManagedObjectContext:[[AppDelegate_Shared sharedDelegate] managedObjectContext]];
 		[newTag setExplicitTags:matchingTags];
 		[newTag setTagName:trimmedTagString];
+		[self openTagWithString:trimmedTagString];
 		
 	}
 }
