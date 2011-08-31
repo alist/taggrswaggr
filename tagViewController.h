@@ -10,8 +10,9 @@
 #import "Three20.h"
 #import "tag.h"
 #import "taggrCellPickerTextField.h"
+#import "editContactWithTagViewController.h"
 
-@interface tagViewController : TTTableViewController <taggrCellPickerTextFieldDelegate>{
+@interface tagViewController : TTTableViewController <taggrCellPickerTextFieldDelegate, editContactWithTagViewControllerDelegate>{
 	tag *	_repTag;
 	
 	taggrCellPickerTextField * _explicitTagsField;
@@ -22,4 +23,6 @@
 -(void) setTagEditModeEnabled:(BOOL)editingTagsEnabled;
 
 -(TTSectionedDataSource*)	tagDisplayDataSource;
+
+-(void) refreshPickerTags;
 @end

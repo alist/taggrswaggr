@@ -37,6 +37,7 @@
 		793B95A41403AD16005CDE06 /* tagTTDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 793B95A31403AD16005CDE06 /* tagTTDataSource.m */; };
 		793B95A71403B411005CDE06 /* taggrNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 793B95A61403B411005CDE06 /* taggrNameViewController.m */; };
 		79418099140DB8DE000E0113 /* taggrTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79418098140DB8DE000E0113 /* taggrTabBarController.m */; };
+		79418106140ED54A000E0113 /* editContactWithTagViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79418105140ED54A000E0113 /* editContactWithTagViewController.m */; };
 		794ADC15140BD9300095FEDB /* taggrCellPickerTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 794ADC14140BD92F0095FEDB /* taggrCellPickerTextField.m */; };
 		79AA6AC3140651790088E087 /* tagViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79AA6AC2140651790088E087 /* tagViewController.m */; };
 /* End PBXBuildFile section */
@@ -255,10 +256,12 @@
 		68BFDAB4134028D5002AB719 /* Three20.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Three20.bundle; path = ../Three20SRC/Three20.bundle; sourceTree = SOURCE_ROOT; };
 		793B95A21403AD16005CDE06 /* tagTTDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tagTTDataSource.h; sourceTree = "<group>"; };
 		793B95A31403AD16005CDE06 /* tagTTDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = tagTTDataSource.m; sourceTree = "<group>"; };
-		793B95A51403B411005CDE06 /* taggrNameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; path = taggrNameViewController.h; sourceTree = "<group>"; };
+		793B95A51403B411005CDE06 /* taggrNameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = taggrNameViewController.h; sourceTree = "<group>"; };
 		793B95A61403B411005CDE06 /* taggrNameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = taggrNameViewController.m; sourceTree = "<group>"; };
-		79418097140DB8DE000E0113 /* taggrTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; path = taggrTabBarController.h; sourceTree = "<group>"; };
+		79418097140DB8DE000E0113 /* taggrTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = taggrTabBarController.h; sourceTree = "<group>"; };
 		79418098140DB8DE000E0113 /* taggrTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = taggrTabBarController.m; sourceTree = "<group>"; };
+		79418104140ED54A000E0113 /* editContactWithTagViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = editContactWithTagViewController.h; sourceTree = "<group>"; };
+		79418105140ED54A000E0113 /* editContactWithTagViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = editContactWithTagViewController.m; sourceTree = "<group>"; };
 		794ADC13140BD92F0095FEDB /* taggrCellPickerTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = taggrCellPickerTextField.h; sourceTree = "<group>"; };
 		794ADC14140BD92F0095FEDB /* taggrCellPickerTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = taggrCellPickerTextField.m; sourceTree = "<group>"; };
 		79AA6AC1140651790088E087 /* tagViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tagViewController.h; sourceTree = "<group>"; };
@@ -503,6 +506,8 @@
 			children = (
 				794ADC13140BD92F0095FEDB /* taggrCellPickerTextField.h */,
 				794ADC14140BD92F0095FEDB /* taggrCellPickerTextField.m */,
+				79418104140ED54A000E0113 /* editContactWithTagViewController.h */,
+				79418105140ED54A000E0113 /* editContactWithTagViewController.m */,
 			);
 			name = Support;
 			sourceTree = "<group>";
@@ -747,6 +752,7 @@
 				79AA6AC3140651790088E087 /* tagViewController.m in Sources */,
 				794ADC15140BD9300095FEDB /* taggrCellPickerTextField.m in Sources */,
 				79418099140DB8DE000E0113 /* taggrTabBarController.m in Sources */,
+				79418106140ED54A000E0113 /* editContactWithTagViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

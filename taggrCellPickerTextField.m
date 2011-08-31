@@ -22,8 +22,8 @@
 		[self setTaggrCellPickerDelegate:self];
 		[self setDelegate:self];
 		[self setClearButtonMode:UITextFieldViewModeWhileEditing];
-		self.autocorrectionType = UITextAutocorrectionTypeNo;
-		self.autocapitalizationType = UITextAutocapitalizationTypeNone;
+		self.autocorrectionType = UITextAutocorrectionTypeYes;
+		self.autocapitalizationType = UITextAutocapitalizationTypeSentences;
 		self.rightViewMode = UITextFieldViewModeAlways;
 		[self setReturnKeyType:UIReturnKeyDone];
 		self.autoresizingMask = UIViewAutoresizingFlexibleWidth;

@@ -10,11 +10,12 @@
 #import "tagTTDataSource.h"
 #import "taggrCellPickerTextField.h"
 
+
 @implementation tagViewController
 
 #pragma mark action handlers
 -(void) contactTagButtonPressed:(UIButton*) sender{
-	
+	[self presentModalViewController:[[[editContactWithTagViewController alloc] initWithContactTag:_repTag tagContactDelegate:self] autorelease] animated:TRUE];
 }
 
 #pragma mark viewController
@@ -58,6 +59,15 @@
 }
 
 
+-(void) refreshPickerTags{
+	[_explicitTagsField removeAllCells];
+	
+	NSMutableArray *	explicitTagNames	=	[NSMutableArray array];
+	for (tag * explicit in _repTag.explicitTags)
+		[explicitTagNames addObject:[explicit tagName]];
+	
+	[_explicitTagsField addCellsWithObjects:explicitTagNames];
+}
 #pragma mark dataSource
 -(TTSectionedDataSource*)	tagDisplayDataSource{
 	
@@ -105,6 +115,17 @@
 }
 
 #pragma mark delegation
+#pragma mark editContactWithTagViewControllerDelegate
+-(void) editContactWithTagViewControllerConcludedWithEditedTag:(tag*)editedTag{
+	//may need to reload datasource for segmented input controller
+	[self refreshPickerTags];
+	[self dismissModalViewControllerAnimated:TRUE];
+}
+-(void) editContactWithTagViewControllerCanceledWithUneditedTag:(tag*)editedTag{
+	[self dismissModalViewControllerAnimated:TRUE];
+}
+
+
 #pragma mark taggrCellPicker
 -(void)		taggrCellPickerModifiedCells:(taggrCellPickerTextField*)picker{
 	//SAVE or something
@@ -118,7 +139,11 @@
 -(void)		taggrCellPickerDidResize:(taggrCellPickerTextField *)picker{
 	if (picker == _explicitTagsField){
 		BOOL reBecomeFirstResponder = [picker isFirstResponder];
-		[self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:[[self dataSource] tableView:self.tableView indexPathForObject:picker]] withRowAnimation:UITableViewRowAnimationFade];
+		
+		NSIndexPath * reloadPath	=	[[self dataSource] tableView:self.tableView indexPathForObject:picker];
+		if (reloadPath != nil){
+			[self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:reloadPath] withRowAnimation:UITableViewRowAnimationFade];
+		}
 		if (reBecomeFirstResponder) {
 			[picker becomeFirstResponder];
 		}
