@@ -7,6 +7,7 @@
 //
 
 #import "TTPickerTextField.h"
+#import "tag.h"
 @class taggrCellPickerTextField;
 
 @protocol taggrCellPickerTextFieldDelegate <NSObject>

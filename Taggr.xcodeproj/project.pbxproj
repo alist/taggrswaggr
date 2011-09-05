@@ -38,6 +38,7 @@
 		793B95A71403B411005CDE06 /* taggrNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 793B95A61403B411005CDE06 /* taggrNameViewController.m */; };
 		79418099140DB8DE000E0113 /* taggrTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79418098140DB8DE000E0113 /* taggrTabBarController.m */; };
 		79418106140ED54A000E0113 /* editContactWithTagViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79418105140ED54A000E0113 /* editContactWithTagViewController.m */; };
+		7941810D1412CFEE000E0113 /* viewContactWithTagViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7941810C1412CFED000E0113 /* viewContactWithTagViewController.m */; };
 		794ADC15140BD9300095FEDB /* taggrCellPickerTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 794ADC14140BD92F0095FEDB /* taggrCellPickerTextField.m */; };
 		79AA6AC3140651790088E087 /* tagViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79AA6AC2140651790088E087 /* tagViewController.m */; };
 /* End PBXBuildFile section */
@@ -262,6 +263,8 @@
 		79418098140DB8DE000E0113 /* taggrTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = taggrTabBarController.m; sourceTree = "<group>"; };
 		79418104140ED54A000E0113 /* editContactWithTagViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = editContactWithTagViewController.h; sourceTree = "<group>"; };
 		79418105140ED54A000E0113 /* editContactWithTagViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = editContactWithTagViewController.m; sourceTree = "<group>"; };
+		7941810B1412CFED000E0113 /* viewContactWithTagViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = viewContactWithTagViewController.h; sourceTree = "<group>"; };
+		7941810C1412CFED000E0113 /* viewContactWithTagViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = viewContactWithTagViewController.m; sourceTree = "<group>"; };
 		794ADC13140BD92F0095FEDB /* taggrCellPickerTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = taggrCellPickerTextField.h; sourceTree = "<group>"; };
 		794ADC14140BD92F0095FEDB /* taggrCellPickerTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = taggrCellPickerTextField.m; sourceTree = "<group>"; };
 		79AA6AC1140651790088E087 /* tagViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tagViewController.h; sourceTree = "<group>"; };
@@ -508,6 +511,8 @@
 				794ADC14140BD92F0095FEDB /* taggrCellPickerTextField.m */,
 				79418104140ED54A000E0113 /* editContactWithTagViewController.h */,
 				79418105140ED54A000E0113 /* editContactWithTagViewController.m */,
+				7941810B1412CFED000E0113 /* viewContactWithTagViewController.h */,
+				7941810C1412CFED000E0113 /* viewContactWithTagViewController.m */,
 			);
 			name = Support;
 			sourceTree = "<group>";
@@ -753,6 +758,7 @@
 				794ADC15140BD9300095FEDB /* taggrCellPickerTextField.m in Sources */,
 				79418099140DB8DE000E0113 /* taggrTabBarController.m in Sources */,
 				79418106140ED54A000E0113 /* editContactWithTagViewController.m in Sources */,
+				7941810D1412CFEE000E0113 /* viewContactWithTagViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

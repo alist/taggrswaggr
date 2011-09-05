@@ -116,7 +116,7 @@
 	
 	NSPredicate * explicitTagsPredicate = nil;
 	if ([referencedTags count] >0){
-		explicitTagsPredicate			=	[NSPredicate predicateWithFormat:@"(SUBQUERY(explicitTags, $s, $s.tagName IN %@).@count != 0)",referencedTags];
+		explicitTagsPredicate			=	[NSPredicate predicateWithFormat:@"(SUBQUERY(explicitTags, $s, $s.tagName IN %@).@count == %i)",referencedTags,[referencedTags count]];
 
 	}
 	

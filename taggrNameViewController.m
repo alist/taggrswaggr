@@ -32,8 +32,12 @@
 	[super viewDidLoad];
 	
 	_bubbleTextField =		[[taggrCellPickerTextField alloc] initWithFrame:CGRectMake(0, 0, 320, 40)];
+
+	tagTTDataSource *			dataSource					=	[[tagTTDataSource alloc] init];
+	[_bubbleTextField setDataSource:dataSource];
+	SRELS(dataSource);
+
 	[_bubbleTextField setTaggrCellPickerDelegate:self];
-	[_bubbleTextField setDataSource:self.dataSource];
 	
 	[self setAutoresizesForKeyboard:TRUE];
 	[self setVariableHeightRows:TRUE];

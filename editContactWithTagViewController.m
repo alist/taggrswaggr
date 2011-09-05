@@ -32,21 +32,25 @@
 		[tagsToAdd addObject:contactTagRef];
 		
 		ABAddressBookRef	addressBook = ABAddressBookCreate(); 
-		ABMultiValueRef phoneNumbers	=	ABRecordCopyValue(person, kABPersonPhoneProperty);
-		CFIndex phoneCount	=	ABMultiValueGetCount(phoneNumbers);
-		for (int i = 0; i < phoneCount; i++){
-			CFStringRef phone = ABMultiValueCopyValueAtIndex(phoneNumbers, i);
-			NSString* phoneString = [NSString stringWithString:(NSString*)phone];
-            CFRelease(phone);
+		
+		//this is actually just annoying
+//		ABMultiValueRef phoneNumbers	=	ABRecordCopyValue(person, kABPersonPhoneProperty);
+//		CFIndex phoneCount	=	ABMultiValueGetCount(phoneNumbers);
+//		for (int i = 0; i < phoneCount; i++){
+//			CFStringRef phone = ABMultiValueCopyValueAtIndex(phoneNumbers, i);
+//			NSString* phoneString = [NSString stringWithString:(NSString*)phone];
+//            CFRelease(phone);
+//
+//			NSString * newTagNameString	=	[NSString stringWithFormat:@"Tel: %@",phoneString];
+//			
+//			tag * newTag			=	[NSEntityDescription insertNewObjectForEntityForName:@"tag" inManagedObjectContext:[_representedTag managedObjectContext]];
+//			[newTag setTagName:newTagNameString];
+//			
+//			[tagsToAdd addObject:newTag];
+//		}
+//		CFRelease(phoneNumbers);
 
-			NSString * newTagNameString	=	[NSString stringWithFormat:@"Tel: %@",phoneString];
-			
-			tag * newTag			=	[NSEntityDescription insertNewObjectForEntityForName:@"tag" inManagedObjectContext:[_representedTag managedObjectContext]];
-			[newTag setTagName:newTagNameString];
-			
-			[tagsToAdd addObject:newTag];
-		}
-		CFRelease(phoneNumbers);
+		
 		CFRelease(addressBook);
 		
 		[_representedTag setExplicitTags:[[_representedTag explicitTags] setByAddingObjectsFromSet:tagsToAdd]];

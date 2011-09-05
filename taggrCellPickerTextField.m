@@ -191,12 +191,12 @@
 -(void) addNewTag{
 	NSString * trimmedTagString	=	[[self text] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 	
-	if (StringHasText(trimmedTagString)){
-		NSArray * tagNames		=	[self cells];
-		NSSet * matchingTags	=  [tagTTDataSource tagsMatchingNames:[NSSet setWithArray:tagNames]];
-		
+	if (StringHasText(trimmedTagString)){		
 		tag* newTag				=	[NSEntityDescription insertNewObjectForEntityForName:@"tag" inManagedObjectContext:[[AppDelegate_Shared sharedDelegate] managedObjectContext]];
-		[newTag setExplicitTags:matchingTags];
+//this functionality would allow setting of tags based on pre-existing tag-search entries, but it provides an unconsistant experience
+//		NSArray * tagNames		=	[self cells];
+//		NSSet * matchingTags	=  [tagTTDataSource tagsMatchingNames:[NSSet setWithArray:tagNames]];
+//		[newTag setExplicitTags:matchingTags];
 		[newTag setTagName:trimmedTagString];
 		[self openTagWithString:trimmedTagString];
 		

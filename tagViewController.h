@@ -11,11 +11,14 @@
 #import "tag.h"
 #import "taggrCellPickerTextField.h"
 #import "editContactWithTagViewController.h"
+#import "viewContactWithTagViewController.h"
 
 @interface tagViewController : TTTableViewController <taggrCellPickerTextFieldDelegate, editContactWithTagViewControllerDelegate>{
 	tag *	_repTag;
 	
-	taggrCellPickerTextField * _explicitTagsField;
+	UIButton *					_contactButton;
+	
+	taggrCellPickerTextField *	_explicitTagsField;
 }
 
 -(id) initWithTagName:(NSString*)tagName;

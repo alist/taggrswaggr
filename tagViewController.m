@@ -15,7 +15,16 @@
 
 #pragma mark action handlers
 -(void) contactTagButtonPressed:(UIButton*) sender{
-	[self presentModalViewController:[[[editContactWithTagViewController alloc] initWithContactTag:_repTag tagContactDelegate:self] autorelease] animated:TRUE];
+	if ([[_explicitTagsField cells] containsObject:@"Contact"]){
+		[self.navigationController pushViewController:[[viewContactWithTagViewController alloc] initWithContactTag:_repTag] animated:TRUE];	
+	}else{
+		[self presentModalViewController:[[[editContactWithTagViewController alloc] initWithContactTag:_repTag tagContactDelegate:self] autorelease] animated:TRUE];		
+	}
+}
+
+-(void) deleteButtonPressed:(UIButton*) sender{
+	[[_repTag managedObjectContext] deleteObject:_repTag];
+	[[self navigationController] popViewControllerAnimated:TRUE];
 }
 
 #pragma mark viewController
@@ -54,7 +63,9 @@
 	}
 	
 	[_repTag setTimesOpened:[NSNumber numberWithInt:timesOpened +1]];
-
+	
+	[self refreshPickerTags];
+	
 	[super viewDidLoad];
 }
 
@@ -63,11 +74,16 @@
 	[_explicitTagsField removeAllCells];
 	
 	NSMutableArray *	explicitTagNames	=	[NSMutableArray array];
-	for (tag * explicit in _repTag.explicitTags)
+	for (tag * explicit in _repTag.explicitTags){
 		[explicitTagNames addObject:[explicit tagName]];
+		if ([[explicit tagName] isEqualToString:@"Contact"]){
+			[_contactButton setTitle:@"View Contact" forState:UIControlStateNormal];
+		}
+	}
 	
 	[_explicitTagsField addCellsWithObjects:explicitTagNames];
 }
+
 #pragma mark dataSource
 -(TTSectionedDataSource*)	tagDisplayDataSource{
 	
@@ -88,20 +104,25 @@
 		_explicitTagsField.autoresizingMask = UIViewAutoresizingFlexibleWidth;
 		[_explicitTagsField sizeToFit];
 	}
-	NSMutableArray *	explicitTagNames	=	[NSMutableArray array];
-	for (tag * explicit in _repTag.explicitTags)
-		[explicitTagNames addObject:[explicit tagName]];
-	
-	[_explicitTagsField addCellsWithObjects:explicitTagNames];
 		
 	//controls
-	UIButton			*		contactButton		=	[UIButton buttonWithType:UIButtonTypeRoundedRect];
-	[contactButton setTitle:@"Make Contact Tag" forState:UIControlStateNormal];
-	[contactButton sizeToFit];
-	[contactButton addTarget:self action:@selector(contactTagButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-	TTTableControlItem	*		contactButtonItem	=	[TTTableControlItem itemWithCaption:nil control:contactButton];
+	_contactButton		=	[[UIButton buttonWithType:UIButtonTypeRoundedRect] retain];
+	[_contactButton setTitle:@"Make Contact Tag" forState:UIControlStateNormal];
+	[_contactButton sizeToFit];
+	[_contactButton addTarget:self action:@selector(contactTagButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+	TTTableControlItem	*		contactButtonItem	=	[TTTableControlItem itemWithCaption:nil control:_contactButton];
 	
-	TTSectionedDataSource	*	sectionedDataSource	=	[TTSectionedDataSource dataSourceWithObjects:@"",_explicitTagsField,@"Options",contactButtonItem,nil];
+
+	UIButton * deleteButton		= nil;
+	
+	if ([[_repTag explicitTags] count] == 0 && [[_repTag timesOpened] intValue]>0){
+		deleteButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+		[deleteButton setTitle:@"Delete Abandoned Tag" forState:UIControlStateNormal];
+		[deleteButton sizeToFit];
+		[deleteButton addTarget:self action:@selector(deleteButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+	}
+	
+	TTSectionedDataSource	*	sectionedDataSource	=	[TTSectionedDataSource dataSourceWithObjects:@"",_explicitTagsField,@"Options",contactButtonItem,deleteButton,nil];
 
 	return sectionedDataSource;
 }

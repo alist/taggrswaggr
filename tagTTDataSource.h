@@ -7,6 +7,7 @@
 //
 #import "Three20/Three20.h"
 #import "tag.h"
+
 @interface tagTTDataSource : TTTableViewDataSource <NSFetchedResultsControllerDelegate, TTModel>{
 	NSManagedObjectContext *		_objectContext;
 	
