@@ -11,7 +11,7 @@
 
 @implementation tag
 
-@dynamic dateCreated;
+@dynamic tagDate, tagDay;
 @dynamic extendedNote;
 @dynamic image;
 @dynamic latitude;
@@ -25,7 +25,7 @@
 
 -(void) awakeFromInsert{
 	[super awakeFromInsert];
-	[self setDateCreated:[NSDate date]];
+	[self setTagDate:[NSDate date]];
 	[self setLastOpenedDate:[NSDate date]];
 	
 	CLLocation * location	=	[[exoLocationManager sharedLocationManager] lastLocation];
@@ -34,7 +34,10 @@
 	}
 }
 
-
+-(void) setTagDate:(NSDate *)tagDate{	
+	[self setValue:tagDate forKey:@"tagDate"];
+	[self setValue:[tagDate dateAtMidnight] forKey:@"tagDay"];
+}
 
 -(CLLocation*)tagLocation{
 	CLLocation* coordinate = [[[CLLocation alloc] initWithLatitude:[[self latitude]doubleValue] longitude:[[self longitude]doubleValue]] autorelease];

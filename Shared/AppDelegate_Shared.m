@@ -27,18 +27,6 @@
     
 	[TTStyleSheet setGlobalStyleSheet:[[[TTDefaultStyleSheet alloc]autorelease] init]];
 	
-	//	UINavigationController *	_favesNavigationController		=		[[UINavigationController alloc] initWithRootViewController:[[[UITableViewController alloc] init] autorelease]];
-	//	[_favesNavigationController setTabBarItem:[[[UITabBarItem alloc] initWithTitle:@"faves" image:nil tag:taggrTabIndexFaves] autorelease]];
-	//	
-	//	
-	//	UINavigationController *	_nearbyNavigationController		=		[[UINavigationController alloc] initWithRootViewController:[[[UITableViewController alloc] init] autorelease]];
-	//	[_nearbyNavigationController setTabBarItem:[[[UITabBarItem alloc] initWithTitle:@"nearby" image:nil tag:taggrTabIndexNearby] autorelease]];
-	//
-	//
-	//	UINavigationController *	_dateNavigationController		=		[[UINavigationController alloc] initWithRootViewController:[[[UITableViewController alloc] init] autorelease]];
-	//	[_dateNavigationController setTabBarItem:[[[UITabBarItem alloc] initWithTitle:@"date" image:nil tag:taggrTabIndexDate] autorelease]];
-	//
-	
 	TTNavigator* navigator		= [TTNavigator navigator];
 	navigator.window			= window;
 	TTURLMap* map				= navigator.URLMap;
@@ -66,6 +54,9 @@
     [self saveContext];
 }
 
+- (void) applicationWillEnterBackground:(id)sender{
+	
+}
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     [self saveContext];
@@ -144,16 +135,28 @@
         return persistentStoreCoordinator_;
     }
     
+	
+	NSFileManager	* fileManager		= [[[NSFileManager alloc] init] autorelease];
+	
+	
     NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"Taggr.sqlite"];
 	
-	
-	_needsPrePopulate = FALSE;
-	if ([[[[NSFileManager alloc] init] autorelease] fileExistsAtPath:[storeURL path]] == NO)
-		_needsPrePopulate = TRUE;
 		
+	NSDictionary *fileAttributes = [fileManager attributesOfItemAtPath:[storeURL path] error:NULL];
+	BOOL needsSetEncrypted = [[fileAttributes valueForKey:NSFileProtectionKey] isEqualToString:NSFileProtectionComplete]? FALSE : TRUE;
+	
     NSError *error = nil;
     persistentStoreCoordinator_ = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
-    if (![persistentStoreCoordinator_ addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {
+	
+	NSDictionary *storeOptions = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:YES],NSMigratePersistentStoresAutomaticallyOption, [NSNumber numberWithBool:YES], NSInferMappingModelAutomaticallyOption, nil];
+
+	
+	_needsPrePopulate = FALSE;
+	if ([fileManager fileExistsAtPath:[storeURL path]] == NO)
+		_needsPrePopulate = TRUE;
+		
+    persistentStoreCoordinator_ = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
+    if (![persistentStoreCoordinator_ addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:storeOptions error:&error]) {
 		[[NSFileManager defaultManager] removeItemAtURL:storeURL error:nil];
         /*
          
@@ -166,6 +169,17 @@
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
     }    
+	
+	if (needsSetEncrypted){
+		NSError *encryptionError = nil;
+		NSDictionary *encryptAttributes = [NSDictionary dictionaryWithObject:NSFileProtectionComplete forKey:NSFileProtectionKey];
+		if(![fileManager setAttributes:encryptAttributes ofItemAtPath:[storeURL path] error: &encryptionError]) {
+			NSLog(@"Unresolved error with store encryption %@, %@", encryptionError, [encryptionError userInfo]);
+			abort();
+			
+		}
+	}
+
     
     return persistentStoreCoordinator_;
 }

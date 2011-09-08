@@ -269,6 +269,7 @@
 		794ADC14140BD92F0095FEDB /* taggrCellPickerTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = taggrCellPickerTextField.m; sourceTree = "<group>"; };
 		79AA6AC1140651790088E087 /* tagViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tagViewController.h; sourceTree = "<group>"; };
 		79AA6AC2140651790088E087 /* tagViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = tagViewController.m; sourceTree = "<group>"; };
+		79F562E11418F92C00CFB103 /* Taggr v2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Taggr v2.xcdatamodel"; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Taggr-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Taggr-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -907,9 +908,10 @@
 		2819307C112F81BE00ECF9B4 /* Taggr.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				79F562E11418F92C00CFB103 /* Taggr v2.xcdatamodel */,
 				2870939E111907710040F596 /* Taggr.xcdatamodel */,
 			);
-			currentVersion = 2870939E111907710040F596 /* Taggr.xcdatamodel */;
+			currentVersion = 79F562E11418F92C00CFB103 /* Taggr v2.xcdatamodel */;
 			name = Taggr.xcdatamodeld;
 			path = Shared/Taggr.xcdatamodeld;
 			sourceTree = "<group>";

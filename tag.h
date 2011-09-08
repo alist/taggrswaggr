@@ -13,7 +13,8 @@
 
 }
 
-@property (nonatomic, retain) NSDate * dateCreated;
+@property (nonatomic, retain) NSDate * tagDate;
+@property (nonatomic, readonly)	NSDate * tagDay;
 @property (nonatomic, retain) NSString * extendedNote;
 @property (nonatomic, retain) NSData * image;
 @property (nonatomic, retain) NSNumber * latitude;
