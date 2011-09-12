@@ -13,20 +13,20 @@
 
 }
 
-@property (nonatomic, retain) NSDate * tagDate;
-@property (nonatomic, readonly)	NSDate * tagDay;
-@property (nonatomic, retain) NSString * extendedNote;
-@property (nonatomic, retain) NSData * image;
-@property (nonatomic, retain) NSNumber * latitude;
-@property (nonatomic, retain) NSNumber * longitude;
-@property (nonatomic, retain) NSNumber * meterDistance;
-@property (nonatomic, retain) NSString * tagName;
-@property (nonatomic, retain) NSSet* explicitTags;
-@property (nonatomic, retain) NSDate * lastOpenedDate;
-@property (nonatomic, retain) NSNumber * timesOpened;
+@property (nonatomic, retain) NSDate *		tagDate;
+@property (nonatomic, readonly)	NSDate *	tagDay;
+@property (nonatomic, retain) NSString *	extendedNote;
+@property (nonatomic, retain) NSData *		image;
+@property (nonatomic, retain) NSNumber *	latitude;
+@property (nonatomic, retain) NSNumber *	longitude;
+@property (nonatomic, retain) NSNumber *	meterDistance;
+@property (nonatomic, retain) NSString *	tagName;
+@property (nonatomic, retain) NSSet*		explicitTags;
+@property (nonatomic, retain) NSDate *		lastOpenedDate;
+@property (nonatomic, retain) NSNumber *	timesOpened;
 
 
--(CLLocation*)tagLocation;
--(void)setTagLocation:(CLLocation*)coordinate;
+-(CLLocation*)	tagLocation;
+-(void)			setTagLocation:(CLLocation*)coordinate;
 
 @end

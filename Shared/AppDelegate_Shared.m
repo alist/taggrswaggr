@@ -9,6 +9,7 @@
 #import "AppDelegate_Shared.h"
 #import "tagTTDataSource.h"
 #import "taggrNameViewController.h"
+#import "taggrDateViewController.h"
 #import "taggrTabBarController.h"
 #import "tagViewController.h"
 #import "exoLocationManager.h"
@@ -28,21 +29,25 @@
 	[TTStyleSheet setGlobalStyleSheet:[[[TTDefaultStyleSheet alloc]autorelease] init]];
 	
 	TTNavigator* navigator		= [TTNavigator navigator];
+	[navigator setPersistenceMode:TTNavigatorPersistenceModeAll];
 	navigator.window			= window;
 	TTURLMap* map				= navigator.URLMap;
 	
 	[map	from:@"tt://name/" toViewController:[taggrNameViewController class] selector:@selector(init)];
+	[map	from:@"tt://date/" toViewController:[taggrDateViewController class] selector:@selector(init)];
 	[map	from:@"tt://tag/(initWithTagName:)" toViewController:[tagViewController class] selector:@selector(initWithTagName:)];
 	[map 	from:@"tt://tabbar/" toViewController:[taggrTabBarController class] selector:@selector(init)];
 	
-	[navigator openURLAction:[TTURLAction actionWithURLPath:@"tt://tabbar/"]];
 	
+	[self.window makeKeyAndVisible];
+	if (! [navigator restoreViewControllers]) {
+		[navigator openURLAction:[TTURLAction actionWithURLPath:@"tt://tabbar/"]];
+	}
 	
 	[[exoLocationManager sharedLocationManager] setLocationUsageReason:@"Taggr automatically associates tags with your current location; you can easily remove this data."];
 	[[exoLocationManager sharedLocationManager] setLocationAccuracy:exoLocationManagerAccuracyScopeCloseBy];
 	[[exoLocationManager sharedLocationManager] startLocationService];
 	
-    [self.window makeKeyAndVisible];
     
     return YES;
 }

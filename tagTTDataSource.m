@@ -10,12 +10,13 @@
 #import "tag.h"
 #import "AppDelegate_Shared.h"
 #import "NSArrayAdditions.h"
+#import "NSDateAdditions.h"
 #import "TTModel.h"
 
 @implementation tagTTDataSource
 @synthesize fetchController, objectContext;
 @synthesize explicitlyReferencedTags = _explicitlyReferencedTags;
-
+@synthesize tagSortType = _tagSortType;
 
 #pragma mark public 
 
@@ -83,10 +84,23 @@
 		
 		NSFetchRequest * request	= [[NSFetchRequest alloc] init];
 		[request setEntity:[NSEntityDescription entityForName:@"tag" inManagedObjectContext:_objectContext]];
-		[request setSortDescriptors:[NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"tagName" ascending:TRUE]]];
-		[request setPropertiesToFetch:[NSArray arrayWithObjects:@"tagName",nil]];
+
+		NSMutableArray *	propertiesToFetch	=	[NSMutableArray arrayWithObjects:@"tagName", nil];
+		NSString *			sectionNameKey		=	nil;
 		
-		_fetchController 			= [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:_objectContext sectionNameKeyPath:nil cacheName:nil];
+		if (_tagSortType ==	taggrSortTypeDate){
+			[propertiesToFetch addObject:@"tagDate"];
+			[propertiesToFetch addObject:@"tagDay"];
+			sectionNameKey	=	@"tagDay";
+			
+			[request setSortDescriptors:[NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"tagDay" ascending:FALSE]]];
+		}else if (_tagSortType == taggrSortTypeRelevance){
+			[request setSortDescriptors:[NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"tagName" ascending:TRUE]]];
+		}
+		
+		[request setPropertiesToFetch:propertiesToFetch];
+		
+		_fetchController 			= [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:_objectContext sectionNameKeyPath:sectionNameKey cacheName:nil];
 		[_fetchController setDelegate:self];
 		SRELS(request);
 		
@@ -137,8 +151,17 @@
 
 #pragma mark NSObject
 -(id) init{
+	if (self = [self initWithTagSortType:taggrSortTypeRelevance]) {
+		
+	}
+	return self;
+}
+
+
+-(id) initWithTagSortType: (taggrSortType)sortType{
 	if (self = [super init]){
-		_objectContext = [[[AppDelegate_Shared sharedDelegate] managedObjectContext] retain];
+		_tagSortType	= sortType;
+		_objectContext	= [[[AppDelegate_Shared sharedDelegate] managedObjectContext] retain];
 	}
 	
 	return self;
@@ -168,13 +191,15 @@
 
 #pragma mark NSFetchedResultsControllerDelegate
 -(void) controllerWillChangeContent:(NSFetchedResultsController *)controller{
+	[self beginUpdates];
 }
 
 -(void) controllerDidChangeContent:(NSFetchedResultsController *)controller{
+	[self endUpdates];
 }
 
 - (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath{
-	if (type == NSFetchedResultsChangeInsert){
+	if (type == NSFetchedResultsChangeInsert){		
 		[self didInsertObject:anObject atIndexPath:newIndexPath];
     }else if (type == NSFetchedResultsChangeMove){
 		[self didDeleteObject:anObject atIndexPath:indexPath];
@@ -187,15 +212,37 @@
 }
 
 - (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id <NSFetchedResultsSectionInfo>)sectionInfo atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type{
-	EXOLog(@"Controller section change %i", sectionIndex);
+	if (type == NSFetchedResultsChangeInsert){		
+		[_delegates perform:@selector(model:didInsertObject:atIndexPath:) withObject:self withObject:sectionInfo withObject:[NSIndexPath indexPathWithIndex:sectionIndex]];
+    }else if (type == NSFetchedResultsChangeMove){
+		[_delegates perform:@selector(model:didDeleteObject:atIndexPath:) withObject:self withObject:sectionInfo withObject:[NSIndexPath indexPathWithIndex:sectionIndex]];
+		[_delegates perform:@selector(model:didInsertObject:atIndexPath:) withObject:self withObject:sectionInfo withObject:[NSIndexPath indexPathWithIndex:sectionIndex]];
+	}else if (type == NSFetchedResultsChangeUpdate){
+		[_delegates perform:@selector(model:didUpdateObject:atIndexPath:) withObject:self withObject:sectionInfo withObject:[NSIndexPath indexPathWithIndex:sectionIndex]];
+	}else if (type == NSFetchedResultsChangeDelete){
+		[_delegates perform:@selector(model:didDeleteObject:atIndexPath:) withObject:self withObject:sectionInfo withObject:[NSIndexPath indexPathWithIndex:sectionIndex]];
+	}
 }
 
 
 #pragma mark -
 #pragma mark private
 
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+	if (_tagSortType == taggrSortTypeDate){
+		tag * firstInSection	=	[[self fetchController] objectAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:section]];
+		NSDate * sectionDay		=	[firstInSection tagDay];
+//		if ([sectionDay timeIntervalSinceDate:[NSDate dateWithToday]] == 0){
+//			return @"Today";
+//		}
+		return [sectionDay formatDate];
+	}
+	
+	return nil;
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    return [[self.fetchController sections] count];
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     id  sectionInfo =	[[[self fetchController] sections] objectAtIndex:section];

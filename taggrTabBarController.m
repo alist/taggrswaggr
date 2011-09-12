@@ -9,6 +9,7 @@
 #import "taggrTabBarController.h"
 #import "Three20.h"
 #import "UITabBarControllerAdditions.h"
+#import "UIViewControllerAdditions.h"
 
 @implementation taggrTabBarController
 
@@ -24,14 +25,16 @@
 
 -(void) viewDidLoad{
 	[super viewDidLoad];
+	
+	[self setTabURLs:[NSArray arrayWithObjects:@"tt://name/",@"tt://date/", nil]];	
 
-	[self setTabURLs:[NSArray arrayWithObjects:@"tt://name/", nil]];	
-	
-	
-	if (! [[TTNavigator navigator] restoreViewControllers]) {
-		[[TTNavigator navigator] openURLAction:[TTURLAction actionWithURLPath:@"helloworld://tabbar"]];
+	// this is highly unoptomized; in the future, let's just iterate through each navigation controller and set tab bar items here!
+	//see: http://www.jefflinwood.com/2010/11/quick-tip-adding-icons-to-three20-tab-bar/
+	for (UIViewController * controller in [self viewControllers]){
+		UIViewController * topController = [controller topSubcontroller];
+		topController.view;
 	}
-	
+
 }
 
 @end

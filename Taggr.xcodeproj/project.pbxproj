@@ -41,6 +41,7 @@
 		7941810D1412CFEE000E0113 /* viewContactWithTagViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7941810C1412CFED000E0113 /* viewContactWithTagViewController.m */; };
 		794ADC15140BD9300095FEDB /* taggrCellPickerTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 794ADC14140BD92F0095FEDB /* taggrCellPickerTextField.m */; };
 		79AA6AC3140651790088E087 /* tagViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79AA6AC2140651790088E087 /* tagViewController.m */; };
+		79ADA65F141AF30400ED2651 /* taggrDateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79ADA65E141AF30400ED2651 /* taggrDateViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -269,6 +270,8 @@
 		794ADC14140BD92F0095FEDB /* taggrCellPickerTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = taggrCellPickerTextField.m; sourceTree = "<group>"; };
 		79AA6AC1140651790088E087 /* tagViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tagViewController.h; sourceTree = "<group>"; };
 		79AA6AC2140651790088E087 /* tagViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = tagViewController.m; sourceTree = "<group>"; };
+		79ADA65D141AF30400ED2651 /* taggrDateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = taggrDateViewController.h; sourceTree = "<group>"; };
+		79ADA65E141AF30400ED2651 /* taggrDateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = taggrDateViewController.m; sourceTree = "<group>"; };
 		79F562E11418F92C00CFB103 /* Taggr v2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Taggr v2.xcdatamodel"; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Taggr-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Taggr-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -488,6 +491,8 @@
 		79B17616140D0E4C000D6EC5 /* Tag Discovery */ = {
 			isa = PBXGroup;
 			children = (
+				79ADA65D141AF30400ED2651 /* taggrDateViewController.h */,
+				79ADA65E141AF30400ED2651 /* taggrDateViewController.m */,
 				793B95A51403B411005CDE06 /* taggrNameViewController.h */,
 				793B95A61403B411005CDE06 /* taggrNameViewController.m */,
 				79418097140DB8DE000E0113 /* taggrTabBarController.h */,
@@ -760,6 +765,7 @@
 				79418099140DB8DE000E0113 /* taggrTabBarController.m in Sources */,
 				79418106140ED54A000E0113 /* editContactWithTagViewController.m in Sources */,
 				7941810D1412CFEE000E0113 /* viewContactWithTagViewController.m in Sources */,
+				79ADA65F141AF30400ED2651 /* taggrDateViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

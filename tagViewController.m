@@ -9,7 +9,7 @@
 #import "tagViewController.h"
 #import "tagTTDataSource.h"
 #import "taggrCellPickerTextField.h"
-
+#import "UIViewControllerAdditions.h"
 
 @implementation tagViewController
 
@@ -105,6 +105,20 @@
 		[_explicitTagsField sizeToFit];
 	}
 		
+	_noteTextField			=	[[UITextView alloc] initWithFrame:CGRectMake(0, 0, 320, 72)];
+	[_noteTextField setDataDetectorTypes:UIDataDetectorTypeAll];
+	[_noteTextField setFont:[UIFont fontWithName:@"Marker Felt" size:16]];
+	[_noteTextField setEditable:FALSE];
+	[_noteTextField addGestureRecognizer:[[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(noteFieldTapped:)] autorelease]];
+
+	NSString *	noteText	=	[_repTag extendedNote];
+	if (StringHasText(noteText)){
+		[_noteTextField setText:noteText];
+	}else{
+		[_noteTextField setText:@"note"];
+		[_noteTextField setTextColor:[UIColor lightGrayColor]];
+	}
+	
 	//controls
 	_contactButton		=	[[UIButton buttonWithType:UIButtonTypeRoundedRect] retain];
 	[_contactButton setTitle:@"Make Contact Tag" forState:UIControlStateNormal];
@@ -122,7 +136,7 @@
 		[deleteButton addTarget:self action:@selector(deleteButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
 	}
 	
-	TTSectionedDataSource	*	sectionedDataSource	=	[TTSectionedDataSource dataSourceWithObjects:@"",_explicitTagsField,@"Options",contactButtonItem,deleteButton,nil];
+	TTSectionedDataSource	*	sectionedDataSource	=	[TTSectionedDataSource dataSourceWithObjects:@"",_explicitTagsField,@"More",contactButtonItem,_noteTextField,deleteButton,nil];
 
 	return sectionedDataSource;
 }
@@ -170,5 +184,35 @@
 		}
 	}
 }
+
+#pragma mark TTMessageControllerDelegate
+- (void)composeController:(TTMessageController*)controller didSendFields:(NSArray*)fields{
+	NSString * bodyText = 	[[controller body] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+	if (StringHasText(bodyText)){
+		[_repTag setExtendedNote:bodyText];
+		[_noteTextField setText:bodyText];
+		[_noteTextField setTextColor:[UIColor blackColor]];
+	}
+	[[self navigationController] popViewControllerAnimated:TRUE];
+}
+- (void)composeControllerWillCancel:(TTMessageController*)controller{
+	[[self navigationController] popViewControllerAnimated:TRUE];
+}
+
+
+#pragma mark TTTextView
+
+-	(void)noteFieldTapped:(UITapGestureRecognizer*)sender{
+	  if ([sender state] ==UIGestureRecognizerStateRecognized){
+		  TTMessageController	* messageController	=	[[TTMessageController alloc] initWithRecipients:nil];
+		  [messageController setDelegate:self];
+		  [messageController	setFields:nil];
+		  [messageController setTitle:[NSString stringWithFormat:@"note %@..",[[_repTag tagName] substringToIndex:MIN(10, [[_repTag tagName] length])]]];;
+		  [messageController setBody:[_repTag extendedNote]];
+		  [[self navigationController] pushViewController:messageController animated:TRUE];
+		  SRELS(messageController);
+	  }
+  }
+
 
 @end

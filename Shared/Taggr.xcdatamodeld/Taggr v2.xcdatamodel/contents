@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model name="Test1.xcdatamodel" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="562" systemVersion="11B2118" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="tag" representedClassName="tag">
+        <attribute name="extendedNote" optional="YES" attributeType="String"/>
+        <attribute name="image" optional="YES" attributeType="Binary"/>
+        <attribute name="lastOpenedDate" optional="YES" attributeType="Date"/>
+        <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0"/>
+        <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0"/>
+        <attribute name="meterDistance" optional="YES" attributeType="Double" defaultValueString="40000000" indexed="YES"/>
+        <attribute name="tagDate" optional="YES" attributeType="Date" elementID="dateCreated"/>
+        <attribute name="tagDay" optional="YES" attributeType="Date" indexed="YES"/>
+        <attribute name="tagName" optional="YES" attributeType="String" indexed="YES"/>
+        <attribute name="timesOpened" optional="YES" attributeType="Integer 32" defaultValueString="0"/>
+        <relationship name="explicitTags" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="tag" inverseName="explicitTags" inverseEntity="tag" indexed="YES"/>
+    </entity>
+    <elements>
+        <element name="tag" positionX="-567" positionY="-45" width="128" height="210"/>
+    </elements>
+</model>

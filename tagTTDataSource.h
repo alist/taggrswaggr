@@ -8,6 +8,17 @@
 #import "Three20/Three20.h"
 #import "tag.h"
 
+//nsuser defaults for faves
+typedef enum taggrSortType{
+	taggrSortTypeName,
+	taggrSortTypeRelevance,
+	taggrSortTypeDate,
+	taggrSortTypeNearby,
+	taggrSortTypeFaves
+}taggrSortType;
+
+
+
 @interface tagTTDataSource : TTTableViewDataSource <NSFetchedResultsControllerDelegate, TTModel>{
 	NSManagedObjectContext *		_objectContext;
 	
@@ -16,11 +27,17 @@
 	NSSet						*	_explicitlyReferencedTags;
 	
 	NSMutableArray*					_delegates;
+
+	taggrSortType					_tagSortType;
 }
 @property (nonatomic, readonly) NSFetchedResultsController	*	fetchController;
 @property (nonatomic, readonly) NSManagedObjectContext *		objectContext;
+@property (nonatomic, assign)	taggrSortType					tagSortType;
+
 //setting this property causes a new predicate generation without "search text"
 @property (nonatomic, retain)	NSSet	*						explicitlyReferencedTags;
+
+-(id) initWithTagSortType: (taggrSortType)sortType;
 
 -(NSPredicate*)	predicateForTagsMatchingString:(NSString*) searchString	withExplicitTagConnections:(NSSet*)	referencedTags;
 - (void)searchWithExplicitlyReferencedTags: (NSSet*) referencedTags searchText:(NSString*) searchText;

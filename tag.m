@@ -6,6 +6,8 @@
 //  Copyright 2011 ExoMachina. All rights reserved.
 //
 
+#define AWAKEFROMUPGRADE 1
+
 #import "tag.h"
 #import "exoLocationManager.h"
 
@@ -23,6 +25,15 @@
 @dynamic timesOpened;
 
 
+#if AWAKEFROMUPGRADE == 1
+#warning this is extremely intensive  
+-(void) awakeFromFetch{
+	if ([self tagDay] == nil){
+		[self setTagDate:[self tagDate]];
+	}
+}
+#endif
+
 -(void) awakeFromInsert{
 	[super awakeFromInsert];
 	[self setTagDate:[NSDate date]];
@@ -35,7 +46,7 @@
 }
 
 -(void) setTagDate:(NSDate *)tagDate{	
-	[self setValue:tagDate forKey:@"tagDate"];
+	[super setPrimitiveValue:tagDate forKey:@"tagDate"];
 	[self setValue:[tagDate dateAtMidnight] forKey:@"tagDay"];
 }
 

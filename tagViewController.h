@@ -13,10 +13,13 @@
 #import "editContactWithTagViewController.h"
 #import "viewContactWithTagViewController.h"
 
-@interface tagViewController : TTTableViewController <taggrCellPickerTextFieldDelegate, editContactWithTagViewControllerDelegate>{
+@interface tagViewController : TTTableViewController <taggrCellPickerTextFieldDelegate, editContactWithTagViewControllerDelegate, UITextViewDelegate,TTMessageControllerDelegate>{
 	tag *	_repTag;
 	
 	UIButton *					_contactButton;
+	
+	TTTextView *				_noteTextField;
+
 	
 	taggrCellPickerTextField *	_explicitTagsField;
 }

@@ -20,5 +20,6 @@
 @property (nonatomic, readonly) tagTTDataSource *tagDataSource;
 
 -(void) addNewTag;
+-(taggrSortType)	tagSortType;
 
 @end

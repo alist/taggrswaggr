@@ -10,15 +10,6 @@
 #import <CoreData/CoreData.h>
 
 
-//nsuser defaults for faves
-
-typedef enum taggrTabIndex{
-	taggrTabIndexName,
-	taggrTabIndexDate,
-	taggrTabIndexNearby,
-	taggrTabIndexFaves
-}taggrTabIndex;
-
 
 @interface AppDelegate_Shared : NSObject <UIApplicationDelegate> {
     

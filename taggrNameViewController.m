@@ -16,30 +16,36 @@
 -(id) init{
 	if (self = [super init]){
 		
-		tagTTDataSource *			dataSource					=	[[tagTTDataSource alloc] init];
-		[self setDataSource:dataSource];
-		SRELS(dataSource);
-		
-		[self setTabBarItem:[[[UITabBarItem alloc] initWithTitle:@"name" image:nil tag:taggrTabIndexName] autorelease]];
-		[self setTitle:@"Taggr"];
 	}
 	
 	return self;
 }
 
 #pragma mark viewController
+-(taggrSortType)	tagSortType{
+	
+	return taggrSortTypeRelevance;
+}
+
 -(void)viewDidLoad{
 	[super viewDidLoad];
+	tagTTDataSource *			dataSource					=	[[tagTTDataSource alloc] initWithTagSortType:[self tagSortType]];
+	[self setDataSource:dataSource];
+	SRELS(dataSource);
+	
+	[self setTabBarItem:[[[UITabBarItem alloc] initWithTitle:@"Usage" image:nil tag:taggrSortTypeRelevance] autorelease]];
+	[self setTitle:@"Taggr"];
 	
 	_bubbleTextField =		[[taggrCellPickerTextField alloc] initWithFrame:CGRectMake(0, 0, 320, 40)];
 
-	tagTTDataSource *			dataSource					=	[[tagTTDataSource alloc] init];
-	[_bubbleTextField setDataSource:dataSource];
-	SRELS(dataSource);
+	tagTTDataSource *			bubbleDataSource					=	[[tagTTDataSource alloc] init];
+	[_bubbleTextField setDataSource:bubbleDataSource];
+	SRELS(bubbleDataSource);
 
 	[_bubbleTextField setTaggrCellPickerDelegate:self];
 	
-	[self setAutoresizesForKeyboard:TRUE];
+	[self.view setAutoresizingMask:0];
+	[self setAutoresizesForKeyboard:YES];
 	[self setVariableHeightRows:TRUE];
 	[[self tableView] setTableHeaderView:_bubbleTextField];
 	[[self.tableView tableHeaderView] setHeight:_bubbleTextField.height];
