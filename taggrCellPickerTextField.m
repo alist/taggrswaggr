@@ -122,6 +122,11 @@
 #pragma mark text field
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
 	
+	if ([self selectedCell] != nil){
+		[self setSelectedCell:nil];
+		return FALSE;
+	}
+	
 	NSString * trimmedTagString	=	[[self text] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 	if (StringHasText(trimmedTagString) == NO){
 		[self resignFirstResponder];

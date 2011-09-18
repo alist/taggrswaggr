@@ -232,9 +232,10 @@
 	if (_tagSortType == taggrSortTypeDate){
 		tag * firstInSection	=	[[self fetchController] objectAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:section]];
 		NSDate * sectionDay		=	[firstInSection tagDay];
-//		if ([sectionDay timeIntervalSinceDate:[NSDate dateWithToday]] == 0){
-//			return @"Today";
-//		}
+		if ([sectionDay timeIntervalSinceDate:[NSDate dateWithToday]] == 0){
+			
+			return [NSString stringWithFormat:@"Today: %@",[sectionDay formatAsShortString]];
+		}
 		return [sectionDay formatDate];
 	}
 	

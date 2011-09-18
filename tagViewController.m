@@ -10,6 +10,7 @@
 #import "tagTTDataSource.h"
 #import "taggrCellPickerTextField.h"
 #import "UIViewControllerAdditions.h"
+#import "NSDateAdditions.h"
 
 @implementation tagViewController
 
@@ -42,6 +43,7 @@
 }
 
 -(void) dealloc{
+	SRELS(_dateFormatter);
 	SRELS(_explicitTagsField);
 	
 	[super dealloc];
@@ -86,10 +88,7 @@
 
 #pragma mark dataSource
 -(TTSectionedDataSource*)	tagDisplayDataSource{
-	
-	if (self.dataSource != nil)
-		return self.dataSource;
-	
+			
 	//manipulations
 	if (_explicitTagsField == nil){
 		_explicitTagsField	=	[[taggrCellPickerTextField alloc] initWithFrame:CGRectMake(0, 0, 320, 40)];
@@ -105,12 +104,20 @@
 		[_explicitTagsField sizeToFit];
 	}
 		
-	_noteTextField			=	[[UITextView alloc] initWithFrame:CGRectMake(0, 0, 320, 72)];
+	_noteTextField				=	[[UITextView alloc] initWithFrame:CGRectMake(0, 0, 320, 72)];
 	[_noteTextField setDataDetectorTypes:UIDataDetectorTypeAll];
 	[_noteTextField setFont:[UIFont fontWithName:@"Marker Felt" size:16]];
 	[_noteTextField setEditable:FALSE];
 	[_noteTextField addGestureRecognizer:[[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(noteFieldTapped:)] autorelease]];
 
+	
+	if (_dateFormatter == nil){
+		_dateFormatter =	    [[NSDateFormatter alloc] init];
+		_dateFormatter.dateFormat = @"EEE, LLL d, YYYY 'at' h:mm a";
+	}
+	
+	TTTableTextItem	* dateCell	=	[TTTableTextItem itemWithText:[_dateFormatter stringFromDate:_repTag.tagDate] delegate:self selector:@selector(dateCellTapped:)];
+	
 	NSString *	noteText	=	[_repTag extendedNote];
 	if (StringHasText(noteText)){
 		[_noteTextField setText:noteText];
@@ -136,7 +143,7 @@
 		[deleteButton addTarget:self action:@selector(deleteButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
 	}
 	
-	TTSectionedDataSource	*	sectionedDataSource	=	[TTSectionedDataSource dataSourceWithObjects:@"",_explicitTagsField,@"More",contactButtonItem,_noteTextField,deleteButton,nil];
+	TTSectionedDataSource	*	sectionedDataSource	=	[TTSectionedDataSource dataSourceWithObjects:@"",_explicitTagsField,@"More",dateCell,contactButtonItem,_noteTextField,deleteButton,nil];
 
 	return sectionedDataSource;
 }
@@ -149,7 +156,14 @@
 	}
 }
 
+
 #pragma mark delegation
+-(void)dateCellTapped:(id) sender{
+	editTagDateViewController *	tagDateController	=	[[editTagDateViewController alloc] initWithTag:_repTag];
+	[tagDateController setDelegate:self];
+	[self.navigationController pushViewController:tagDateController animated:TRUE];
+	SRELS(tagDateController);
+}
 #pragma mark editContactWithTagViewControllerDelegate
 -(void) editContactWithTagViewControllerConcludedWithEditedTag:(tag*)editedTag{
 	//may need to reload datasource for segmented input controller
@@ -183,6 +197,20 @@
 			[picker becomeFirstResponder];
 		}
 	}
+}
+#pragma mark 	editTagDateViewControllerDelegate
+-(void)	editTagDateViewControllerDidUpdateTag:(tag*)theTag withFlags:(editTagDateTagFlag)flags withController:(editTagDateViewController*)controler{
+	if (flags & editTagDateTagFlagIsTodo){
+		[_explicitTagsField addCellWithObject:@"ToDo"];
+	}
+	if (flags & editTagDateTagFlagIsMeeting){
+		[_explicitTagsField addCellWithObject:@"Meeting"];
+	}
+	
+	if (flags & editTagDateTagFlagDateChanged){
+		[_explicitTagsField addCellWithObject:@"Dated"];	
+	}
+	[self setDataSource:[self tagDisplayDataSource]];
 }
 
 #pragma mark TTMessageControllerDelegate

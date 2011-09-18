@@ -12,13 +12,16 @@
 #import "taggrCellPickerTextField.h"
 #import "editContactWithTagViewController.h"
 #import "viewContactWithTagViewController.h"
+#import "editTagDateViewController.h"
 
-@interface tagViewController : TTTableViewController <taggrCellPickerTextFieldDelegate, editContactWithTagViewControllerDelegate, UITextViewDelegate,TTMessageControllerDelegate>{
+@interface tagViewController : TTTableViewController <taggrCellPickerTextFieldDelegate, editContactWithTagViewControllerDelegate, UITextViewDelegate,TTMessageControllerDelegate,editTagDateViewControllerDelegate>{
 	tag *	_repTag;
 	
 	UIButton *					_contactButton;
 	
 	TTTextView *				_noteTextField;
+	
+	NSDateFormatter	*			_dateFormatter;
 
 	
 	taggrCellPickerTextField *	_explicitTagsField;

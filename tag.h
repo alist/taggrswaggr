@@ -29,4 +29,6 @@
 -(CLLocation*)	tagLocation;
 -(void)			setTagLocation:(CLLocation*)coordinate;
 
+-(BOOL)			isReferencedToTagNamed: (NSString*) tagName;
+
 @end

@@ -144,7 +144,15 @@
 	NSFileManager	* fileManager		= [[[NSFileManager alloc] init] autorelease];
 	
 	
-    NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"Taggr.sqlite"];
+    NSURL *storeURL			= [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"Taggr.sqlite"];
+	NSString * storePath	=	[storeURL path];
+	if ([fileManager fileExistsAtPath:storePath] == NO){
+		NSString	* oldDBPath		=	[[NSBundle mainBundle] pathForResource:@"OldTaggr" ofType:@"sqlite"];
+		if ([fileManager fileExistsAtPath:oldDBPath] == YES){
+			[fileManager copyItemAtPath:oldDBPath toPath:storePath error:nil];
+		}
+
+	}
 	
 		
 	NSDictionary *fileAttributes = [fileManager attributesOfItemAtPath:[storeURL path] error:NULL];

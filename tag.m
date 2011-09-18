@@ -25,14 +25,14 @@
 @dynamic timesOpened;
 
 
-#if AWAKEFROMUPGRADE == 1
-#warning this is extremely intensive  
--(void) awakeFromFetch{
-	if ([self tagDay] == nil){
-		[self setTagDate:[self tagDate]];
-	}
-}
-#endif
+//#if AWAKEFROMUPGRADE == 1
+//#warning this is extremely intensive  
+//-(void) awakeFromFetch{
+//	if ([self tagDay] == nil){
+//		[self setTagDate:[self tagDate]];
+//	}
+//}
+//#endif
 
 -(void) awakeFromInsert{
 	[super awakeFromInsert];
@@ -65,6 +65,15 @@
 	[self setLatitude:latitude];
 	[self setLongitude:longitude];
 	
+}
+
+-(BOOL)	isReferencedToTagNamed: (NSString*) tagName{
+	for (tag * refTag in [self explicitTags]){
+		if ([[refTag tagName] isEqualToString:tagName]){
+			return TRUE;
+		}
+	}
+	return FALSE;
 }
 
 @end
