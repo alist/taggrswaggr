@@ -93,7 +93,7 @@
 			[propertiesToFetch addObject:@"tagDay"];
 			sectionNameKey	=	@"tagDay";
 			
-			[request setSortDescriptors:[NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"tagDay" ascending:FALSE]]];
+			[request setSortDescriptors:[NSArray arrayWithObjects:[NSSortDescriptor sortDescriptorWithKey:@"tagDay" ascending:FALSE],[NSSortDescriptor sortDescriptorWithKey:@"tagDate" ascending:TRUE],nil]];
 		}else if (_tagSortType == taggrSortTypeRelevance){
 			[request setSortDescriptors:[NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"tagName" ascending:TRUE]]];
 		}
@@ -230,10 +230,12 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
 	if (_tagSortType == taggrSortTypeDate){
-		tag * firstInSection	=	[[self fetchController] objectAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:section]];
-		NSDate * sectionDay		=	[firstInSection tagDay];
+		NSIndexPath * sectionPath	=	[NSIndexPath indexPathForRow:0 inSection:section];
+		tag * firstInSection		=	[[self fetchController] objectAtIndexPath:sectionPath];
+		NSDate * sectionDay			=	[firstInSection tagDay];
 		if ([sectionDay timeIntervalSinceDate:[NSDate dateWithToday]] == 0){
 			
+			_indexPathOfTodaySection=	[sectionPath retain];
 			return [NSString stringWithFormat:@"Today: %@",[sectionDay formatAsShortString]];
 		}
 		return [sectionDay formatDate];
@@ -262,6 +264,14 @@
 
 - (Class)tableView:(UITableView *)tableView cellClassForObject:(id)object {
     return [TTTableTextItemCell class];
+}
+
+-(NSIndexPath*)	initialScrollPath{
+	if (_tagSortType == taggrSortTypeDate){
+		return _indexPathOfTodaySection;
+	}
+
+	return [NSIndexPath indexPathForRow:0 inSection:0];
 }
 
 #pragma mark -

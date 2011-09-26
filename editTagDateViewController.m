@@ -64,12 +64,12 @@
 -(TTTableViewDataSource	*)dateDisplayDataSource{
 	TTTableSubtextItem	*	dateItem			=	[TTTableSubtextItem itemWithText:[_dateFormatter stringFromDate:_tempDate] caption:nil];
 	
-	TTTableSubtextItem	*		isMeetingItem		=	[TTTableSubtextItem itemWithText:@"Set as 'Meeting'" delegate:self selector:@selector(meetingButtonPressed:)];
-	if ([_repTag isReferencedToTagNamed:@"Meeting"]){
-		[isMeetingItem setText:@"Taggd as Meeting"];
-		[isMeetingItem setDelegate:nil];
-	}else 	if (_chosenFlags & editTagDateTagFlagIsMeeting){
-		[isMeetingItem setText:@"Will Save as Meeting"];
+	TTTableSubtextItem	*		IsEventItem		=	[TTTableSubtextItem itemWithText:@"Set as 'Event'" delegate:self selector:@selector(meetingButtonPressed:)];
+	if ([_repTag isReferencedToTagNamed:@"Event"]){
+		[IsEventItem setText:@"Taggd as Event"];
+		[IsEventItem setDelegate:nil];
+	}else 	if (_chosenFlags & editTagDateTagFlagIsEvent){
+		[IsEventItem setText:@"Will Save as Event"];
 	}
 
 	
@@ -81,7 +81,7 @@
 		[isToDoItem setText:@"Will Save as ToDo"];
 	}
 
-	return	[TTSectionedDataSource dataSourceWithObjects:@"",dateItem,@"",isToDoItem,isMeetingItem,nil];
+	return	[TTSectionedDataSource dataSourceWithObjects:@"",dateItem,@"",isToDoItem,IsEventItem,nil];
 }
 
 -(void)displayDatePicker{
@@ -130,7 +130,7 @@
 }
 
 -(void) meetingButtonPressed: (id) sender{
-	_chosenFlags =	_chosenFlags ^ editTagDateTagFlagIsMeeting;
+	_chosenFlags =	_chosenFlags ^ editTagDateTagFlagIsEvent;
 	
 	[self setDataSource:[self dateDisplayDataSource]];
 	[[self tableView] reloadRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:1 inSection:1]] withRowAnimation:UITableViewRowAnimationFade];

@@ -203,8 +203,8 @@
 	if (flags & editTagDateTagFlagIsTodo){
 		[_explicitTagsField addCellWithObject:@"ToDo"];
 	}
-	if (flags & editTagDateTagFlagIsMeeting){
-		[_explicitTagsField addCellWithObject:@"Meeting"];
+	if (flags & editTagDateTagFlagIsEvent){
+		[_explicitTagsField addCellWithObject:@"Event"];
 	}
 	
 	if (flags & editTagDateTagFlagDateChanged){

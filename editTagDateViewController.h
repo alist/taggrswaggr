@@ -14,7 +14,7 @@
 typedef enum {
 	editTagDateTagFlagDateChanged	= 1 << 0,
 	editTagDateTagFlagIsTodo		= 1 << 1,
-	editTagDateTagFlagIsMeeting		= 1 << 2
+	editTagDateTagFlagIsEvent		= 1 << 2
 }editTagDateTagFlag;
 
 @class editTagDateViewController;

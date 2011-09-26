@@ -28,6 +28,8 @@ typedef enum taggrSortType{
 	
 	NSMutableArray*					_delegates;
 
+	NSIndexPath					*	_indexPathOfTodaySection;
+	
 	taggrSortType					_tagSortType;
 }
 @property (nonatomic, readonly) NSFetchedResultsController	*	fetchController;
@@ -46,6 +48,8 @@ typedef enum taggrSortType{
 +(tag*)		tagMatchingTagName:(NSString*)tagName;
 
 +(NSSet*)	tagsMatchingNames:(NSSet*)tagNames;
+
+-(NSIndexPath*)	initialScrollPath;
 
 
 

@@ -49,7 +49,7 @@
 	[self setVariableHeightRows:TRUE];
 	[[self tableView] setTableHeaderView:_bubbleTextField];
 	[[self.tableView tableHeaderView] setHeight:_bubbleTextField.height];
-			
+	
 //	[[self navigationItem] setRightBarButtonItem:[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addTagButtonPressed)]autorelease]];
 	
 }

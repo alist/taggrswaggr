@@ -59,14 +59,22 @@
     [self saveContext];
 }
 
-- (void) applicationWillEnterBackground:(id)sender{
-	
-}
-
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     [self saveContext];
 }
 
+- (void)applicationWillResignActive:(UIApplication *)application {
+    [self saveContext];
+	[[exoLocationManager sharedLocationManager] stopLocaitonService];
+}
+
+-(void) applicationDidBecomeActive:(UIApplication *)application{
+	[[exoLocationManager sharedLocationManager] startLocationService];
+}
+
+- (void)applicationWillEnterForeground:(UIApplication *)application {
+
+}
 
 - (void)saveContext {
     
