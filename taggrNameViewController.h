@@ -12,7 +12,6 @@
 #import "tagTTDataSource.h"
 #import "taggrCellPickerTextField.h"
 
-
 @interface taggrNameViewController : TTTableViewController <TTTextEditorDelegate, UITextFieldDelegate, taggrCellPickerTextFieldDelegate>{
 	taggrCellPickerTextField * _bubbleTextField;
 }

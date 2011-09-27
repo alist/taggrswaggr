@@ -13,6 +13,8 @@
 #import "NSDateAdditions.h"
 #import "TTModel.h"
 
+#import "taggrNameViewController.h";
+
 @implementation tagTTDataSource
 @synthesize fetchController, objectContext;
 @synthesize explicitlyReferencedTags = _explicitlyReferencedTags;
@@ -259,6 +261,13 @@
 	
 	tag * rowTag			= [[self fetchController] objectAtIndexPath:indexPath];
     TTTableTextItem* item	= [TTTableTextItem itemWithText:[rowTag tagName] URL:[NSString stringWithFormat:@"tt://tag/%@",[[rowTag tagName] UTF8EscapedString]]];
+	
+	UIViewController * superViewController=  [[tableView superview] viewController];
+	if ([superViewController isKindOfClass:[taggrNameViewController class]]){
+		[item setAccessoryURL:[NSString stringWithFormat:@"tt://tag/%@",[[rowTag tagName] UTF8EscapedString]]];
+
+	}
+
     return item;
 }
 

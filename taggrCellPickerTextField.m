@@ -9,8 +9,11 @@
 #import "taggrCellPickerTextField.h"
 #import "Three20UI/TTPickerViewCell.h"
 #import "Three20.h"
+#import "TTNavigator.h"
 #import "tagTTDataSource.h"
 #import "AppDelegate_Shared.h"
+
+@class taggrNameViewController;
 
 @implementation taggrCellPickerTextField
 @synthesize taggrCellPickerDelegate = _taggrCellPickerDelegate;
@@ -119,7 +122,25 @@
 	}
 }
 
+
+#pragma mark UITableView
+- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath{
+	id object = [_dataSource tableView:tableView objectForRowAtIndexPath:indexPath];
+	TTOpenURL([object accessoryURL]);
+}
+
+- (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath {
+//	id object = [_dataSource tableView:tableView objectForRowAtIndexPath:indexPath];
+	[super tableView:tableView didSelectRowAtIndexPath:indexPath];
+}
+
 #pragma mark text field
+//- (CGRect)rectForSearchResults:(BOOL)withKeyboard {
+//	CGRect searchRect = [super rectForSearchResults:withKeyboard];
+//	
+//	return CGRectUnion(searchRect, CGRectApplyAffineTransform(searchRect, CGAffineTransformMakeTranslation(0, 40)));
+//}
+
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
 	
 	if ([self selectedCell] != nil){
@@ -198,10 +219,16 @@
 	
 	if (StringHasText(trimmedTagString)){		
 		tag* newTag				=	[NSEntityDescription insertNewObjectForEntityForName:@"tag" inManagedObjectContext:[[AppDelegate_Shared sharedDelegate] managedObjectContext]];
-//this functionality would allow setting of tags based on pre-existing tag-search entries, but it provides an unconsistant experience
-//		NSArray * tagNames		=	[self cells];
-//		NSSet * matchingTags	=  [tagTTDataSource tagsMatchingNames:[NSSet setWithArray:tagNames]];
-//		[newTag setExplicitTags:matchingTags];
+		
+		
+		UIViewController * superViewController=  [[self superview] viewController];
+		if ([superViewController isKindOfClass:[taggrNameViewController class]]){
+			//	this functionality would allow setting of tags based on pre-existing tag-search entries, but it provides an unconsistant experience
+			NSArray * tagNames		=	[self cells];
+			NSSet * matchingTags	=  [tagTTDataSource tagsMatchingNames:[NSSet setWithArray:tagNames]];
+			[newTag setExplicitTags:matchingTags];
+		}
+		
 		[newTag setTagName:trimmedTagString];
 		[self openTagWithString:trimmedTagString];
 		

@@ -12,8 +12,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface viewContactWithTagViewController : ABPersonViewController <ABPersonViewControllerDelegate>{
-	tag *	_repTag;
+@interface viewContactWithTagViewController : ABPersonViewController <ABPersonViewControllerDelegate, UIActionSheetDelegate>{
+	tag *				_repTag;
+	
+	NSString*			_actionPendingString;
 	
 	ABAddressBookRef	_addressBook;
 }

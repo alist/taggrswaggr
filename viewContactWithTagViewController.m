@@ -52,6 +52,19 @@
 
 - (BOOL)personViewController:(ABPersonViewController *)personViewController shouldPerformDefaultActionForPerson:(ABRecordRef)person property:(ABPropertyID)property identifier:(ABMultiValueIdentifier)identifierForValue{
 	
+	if (property == kABPersonPhoneProperty){
+		ABMutableMultiValueRef	phoneNumbers		=	ABRecordCopyValue(person, property);
+		CFStringRef				selectedNumber		=	ABMultiValueCopyValueAtIndex(phoneNumbers, identifierForValue);
+		NSString	*			phoneNumberString	=	(NSString*)selectedNumber;
+		
+		UIActionSheet	*		phoneActionSheet	=	[[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:[NSString stringWithFormat:@"Text: %@",phoneNumberString],[NSString stringWithFormat:@"Call: %@",phoneNumberString], nil];
+		_actionPendingString	=	[phoneNumberString retain];
+		[phoneActionSheet showFromTabBar:[[[self navigationController] tabBarController]tabBar]];
+		SRELS(phoneActionSheet);
+		
+		return FALSE;
+	}
+	
 	return TRUE;
 }
 
@@ -68,6 +81,19 @@
 	SRELS(tagABCandidates);
 
 	return returnPerson;
+}
+
+#pragma mark -
+#pragma mark UIActionSheetDelegate
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+	if (buttonIndex == 1){
+		[[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel:%@",[[_actionPendingString componentsSeparatedByCharactersInSet:[[NSCharacterSet decimalDigitCharacterSet] invertedSet]]componentsJoinedByString:@""]]]];
+
+	}else if (buttonIndex == 0){
+		[[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"sms:%@",[[_actionPendingString componentsSeparatedByCharactersInSet:[[NSCharacterSet decimalDigitCharacterSet] invertedSet]]componentsJoinedByString:@""]]]];
+	}
+	
+	SRELS(_actionPendingString);
 }
 
 @end

@@ -15,7 +15,7 @@
 
 -(id) init{
 	if (self = [super init]){
-		
+
 	}
 	
 	return self;
@@ -29,6 +29,7 @@
 
 -(void)viewDidLoad{
 	[super viewDidLoad];
+	
 	tagTTDataSource *			dataSource					=	[[tagTTDataSource alloc] initWithTagSortType:[self tagSortType]];
 	[self setDataSource:dataSource];
 	SRELS(dataSource);

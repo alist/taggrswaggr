@@ -235,7 +235,7 @@
 		  TTMessageController	* messageController	=	[[TTMessageController alloc] initWithRecipients:nil];
 		  [messageController setDelegate:self];
 		  [messageController	setFields:nil];
-		  [messageController setTitle:[NSString stringWithFormat:@"note %@..",[[_repTag tagName] substringToIndex:MIN(10, [[_repTag tagName] length])]]];;
+		  [messageController setTitle:[NSString stringWithFormat:@"note %@..",[[_repTag tagName] substringToIndex:MIN(10, [[_repTag tagName] length])]]];
 		  [messageController setBody:[_repTag extendedNote]];
 		  [[self navigationController] pushViewController:messageController animated:TRUE];
 		  SRELS(messageController);
