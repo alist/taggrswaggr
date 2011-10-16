@@ -181,6 +181,19 @@
 	NSArray * tagNames		=	[picker cells];
 	NSSet * updateTags		=  [tagTTDataSource tagsMatchingNames:[NSSet setWithArray:tagNames]];
 
+//	someday when ordered sets work with core data
+//	NSMutableSet * matchingTagsSearchSet	=	[updatedTags mutableCopy];
+//	NSMutableOrderedSet	* tagsToAddInOrder	=	[NSMutableOrderedSet orderedSetWithCapacity:[matchingTagsSearchSet count]];
+//	for (NSString * nextTagName in tagNames){
+//		for (tag* nextTag in matchingTagsSearchSet){
+//			if ([[nextTag tagName] isEqualToString:nextTagName]){
+//				[tagsToAddInOrder addObject:nextTag];
+//				[matchingTagsSearchSet removeObject:nextTag];
+//				break;
+//			}
+//		}
+//	}		
+	
 	if (picker == _explicitTagsField)
 		[_repTag setExplicitTags:updateTags];
 

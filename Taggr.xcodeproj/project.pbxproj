@@ -267,6 +267,8 @@
 		79418105140ED54A000E0113 /* editContactWithTagViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = editContactWithTagViewController.m; sourceTree = "<group>"; };
 		7941810B1412CFED000E0113 /* viewContactWithTagViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = viewContactWithTagViewController.h; sourceTree = "<group>"; };
 		7941810C1412CFED000E0113 /* viewContactWithTagViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = viewContactWithTagViewController.m; sourceTree = "<group>"; };
+		794298E2144A5CB80072139C /* Taggr v3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Taggr v3.xcdatamodel"; sourceTree = "<group>"; };
+		794298E3144A7ED00072139C /* Taggr v4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Taggr v4.xcdatamodel"; sourceTree = "<group>"; };
 		79491D2514200B7700B05BA2 /* editTagDateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = editTagDateViewController.h; sourceTree = "<group>"; };
 		79491D2614200B7700B05BA2 /* editTagDateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = editTagDateViewController.m; sourceTree = "<group>"; };
 		794ADC13140BD92F0095FEDB /* taggrCellPickerTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = taggrCellPickerTextField.h; sourceTree = "<group>"; };
@@ -969,9 +971,11 @@
 			isa = XCVersionGroup;
 			children = (
 				79F562E11418F92C00CFB103 /* Taggr v2.xcdatamodel */,
+				794298E2144A5CB80072139C /* Taggr v3.xcdatamodel */,
+				794298E3144A7ED00072139C /* Taggr v4.xcdatamodel */,
 				2870939E111907710040F596 /* Taggr.xcdatamodel */,
 			);
-			currentVersion = 79F562E11418F92C00CFB103 /* Taggr v2.xcdatamodel */;
+			currentVersion = 794298E3144A7ED00072139C /* Taggr v4.xcdatamodel */;
 			name = Taggr.xcdatamodeld;
 			path = Shared/Taggr.xcdatamodeld;
 			sourceTree = "<group>";
