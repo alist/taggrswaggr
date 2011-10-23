@@ -6,7 +6,7 @@
 //  Copyright 2011 ExoMachina. All rights reserved.
 //
 
-#define AWAKEFROMUPGRADE 1
+#define AWAKEFROMUPGRADE 0
 
 #import "tag.h"
 #import "exoLocationManager.h"
@@ -15,7 +15,8 @@
 
 @dynamic tagDate, tagDay;
 @dynamic extendedNote;
-@dynamic image;
+@dynamic attachmentData;
+@dynamic attachmentMIME;
 @dynamic latitude;
 @dynamic longitude;
 @dynamic meterDistance;
@@ -25,14 +26,14 @@
 @dynamic timesOpened;
 
 
-//#if AWAKEFROMUPGRADE == 1
-//#warning this is extremely intensive  
-//-(void) awakeFromFetch{
-//	if ([self tagDay] == nil){
-//		[self setTagDate:[self tagDate]];
-//	}
-//}
-//#endif
+#if AWAKEFROMUPGRADE == 1
+#warning this is extremely intensive  
+-(void) awakeFromFetch{
+	if ([self tagDay] == nil){
+		[self setTagDate:[self tagDate]];
+	}
+}
+#endif
 
 -(void) awakeFromInsert{
 	[super awakeFromInsert];

@@ -280,6 +280,7 @@
 		797E2996145494CA00E64287 /* TaggrIcon57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TaggrIcon57.png; sourceTree = "<group>"; };
 		797E2997145494CA00E64287 /* TaggrIcon72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TaggrIcon72.png; sourceTree = "<group>"; };
 		797E2998145494CA00E64287 /* TaggrIcon114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TaggrIcon114.png; sourceTree = "<group>"; };
+		797E2A1B14549A7400E64287 /* Taggr v5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Taggr v5.xcdatamodel"; sourceTree = "<group>"; };
 		79AA6AC1140651790088E087 /* tagViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tagViewController.h; sourceTree = "<group>"; };
 		79AA6AC2140651790088E087 /* tagViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = tagViewController.m; sourceTree = "<group>"; };
 		79ADA65D141AF30400ED2651 /* taggrDateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = taggrDateViewController.h; sourceTree = "<group>"; };
@@ -1000,9 +1001,10 @@
 				79F562E11418F92C00CFB103 /* Taggr v2.xcdatamodel */,
 				794298E2144A5CB80072139C /* Taggr v3.xcdatamodel */,
 				794298E3144A7ED00072139C /* Taggr v4.xcdatamodel */,
+				797E2A1B14549A7400E64287 /* Taggr v5.xcdatamodel */,
 				2870939E111907710040F596 /* Taggr.xcdatamodel */,
 			);
-			currentVersion = 794298E3144A7ED00072139C /* Taggr v4.xcdatamodel */;
+			currentVersion = 797E2A1B14549A7400E64287 /* Taggr v5.xcdatamodel */;
 			name = Taggr.xcdatamodeld;
 			path = Shared/Taggr.xcdatamodeld;
 			sourceTree = "<group>";
