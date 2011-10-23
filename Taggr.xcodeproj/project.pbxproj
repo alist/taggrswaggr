@@ -41,6 +41,9 @@
 		7941810D1412CFEE000E0113 /* viewContactWithTagViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7941810C1412CFED000E0113 /* viewContactWithTagViewController.m */; };
 		79491D2714200B7700B05BA2 /* editTagDateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79491D2614200B7700B05BA2 /* editTagDateViewController.m */; };
 		794ADC15140BD9300095FEDB /* taggrCellPickerTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 794ADC14140BD92F0095FEDB /* taggrCellPickerTextField.m */; };
+		797E2999145494CA00E64287 /* TaggrIcon57.png in Resources */ = {isa = PBXBuildFile; fileRef = 797E2996145494CA00E64287 /* TaggrIcon57.png */; };
+		797E299A145494CA00E64287 /* TaggrIcon72.png in Resources */ = {isa = PBXBuildFile; fileRef = 797E2997145494CA00E64287 /* TaggrIcon72.png */; };
+		797E299B145494CA00E64287 /* TaggrIcon114.png in Resources */ = {isa = PBXBuildFile; fileRef = 797E2998145494CA00E64287 /* TaggrIcon114.png */; };
 		79AA6AC3140651790088E087 /* tagViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79AA6AC2140651790088E087 /* tagViewController.m */; };
 		79ADA65F141AF30400ED2651 /* taggrDateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79ADA65E141AF30400ED2651 /* taggrDateViewController.m */; };
 /* End PBXBuildFile section */
@@ -243,20 +246,20 @@
 		68BFD7DF133FF1F9002AB719 /* exoLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = exoLib.xcodeproj; path = ../../dev/exoLib/exoLib.xcodeproj; sourceTree = SOURCE_ROOT; };
 		68BFD80C13400186002AB719 /* tag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tag.h; sourceTree = "<group>"; };
 		68BFD80D13400186002AB719 /* tag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = tag.m; sourceTree = "<group>"; };
-		68BFD87E13400B72002AB719 /* Three20UI.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20UI.xcodeproj; path = ../Three20SRC/Three20UI/Three20UI.xcodeproj; sourceTree = SOURCE_ROOT; };
+		68BFD87E13400B72002AB719 /* Three20UI.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20UI.xcodeproj; path = ./Three20SRC/Three20UI/Three20UI.xcodeproj; sourceTree = SOURCE_ROOT; };
 		68BFD8AE13400C81002AB719 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		68BFD8E513400CAA002AB719 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		68BFD8E613400CAA002AB719 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
 		68BFD8E713400CAA002AB719 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		68BFD8EB13400CAF002AB719 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		68BFD91613400CCA002AB719 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		68BFD94313400D34002AB719 /* Three20.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20.xcodeproj; path = ../Three20SRC/Three20/Three20.xcodeproj; sourceTree = SOURCE_ROOT; };
-		68BFD94C13400D41002AB719 /* Three20Core.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20Core.xcodeproj; path = ../Three20SRC/Three20Core/Three20Core.xcodeproj; sourceTree = SOURCE_ROOT; };
-		68BFD94F13400D41002AB719 /* Three20Network.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20Network.xcodeproj; path = ../Three20SRC/Three20Network/Three20Network.xcodeproj; sourceTree = SOURCE_ROOT; };
-		68BFD95213400D41002AB719 /* Three20Style.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20Style.xcodeproj; path = ../Three20SRC/Three20Style/Three20Style.xcodeproj; sourceTree = SOURCE_ROOT; };
-		68BFD95513400D41002AB719 /* Three20UICommon.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20UICommon.xcodeproj; path = ../Three20SRC/Three20UICommon/Three20UICommon.xcodeproj; sourceTree = SOURCE_ROOT; };
-		68BFD95813400D41002AB719 /* Three20UINavigator.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20UINavigator.xcodeproj; path = ../Three20SRC/Three20UINavigator/Three20UINavigator.xcodeproj; sourceTree = SOURCE_ROOT; };
-		68BFDAB4134028D5002AB719 /* Three20.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Three20.bundle; path = ../Three20SRC/Three20.bundle; sourceTree = SOURCE_ROOT; };
+		68BFD94313400D34002AB719 /* Three20.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20.xcodeproj; path = ./Three20SRC/Three20/Three20.xcodeproj; sourceTree = SOURCE_ROOT; };
+		68BFD94C13400D41002AB719 /* Three20Core.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20Core.xcodeproj; path = ./Three20SRC/Three20Core/Three20Core.xcodeproj; sourceTree = SOURCE_ROOT; };
+		68BFD94F13400D41002AB719 /* Three20Network.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20Network.xcodeproj; path = ./Three20SRC/Three20Network/Three20Network.xcodeproj; sourceTree = SOURCE_ROOT; };
+		68BFD95213400D41002AB719 /* Three20Style.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20Style.xcodeproj; path = ./Three20SRC/Three20Style/Three20Style.xcodeproj; sourceTree = SOURCE_ROOT; };
+		68BFD95513400D41002AB719 /* Three20UICommon.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20UICommon.xcodeproj; path = ./Three20SRC/Three20UICommon/Three20UICommon.xcodeproj; sourceTree = SOURCE_ROOT; };
+		68BFD95813400D41002AB719 /* Three20UINavigator.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20UINavigator.xcodeproj; path = ./Three20SRC/Three20UINavigator/Three20UINavigator.xcodeproj; sourceTree = SOURCE_ROOT; };
+		68BFDAB4134028D5002AB719 /* Three20.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Three20.bundle; path = Three20SRC/Three20.bundle; sourceTree = SOURCE_ROOT; };
 		793B95A21403AD16005CDE06 /* tagTTDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tagTTDataSource.h; sourceTree = "<group>"; };
 		793B95A31403AD16005CDE06 /* tagTTDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = tagTTDataSource.m; sourceTree = "<group>"; };
 		793B95A51403B411005CDE06 /* taggrNameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = taggrNameViewController.h; sourceTree = "<group>"; };
@@ -273,6 +276,10 @@
 		79491D2614200B7700B05BA2 /* editTagDateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = editTagDateViewController.m; sourceTree = "<group>"; };
 		794ADC13140BD92F0095FEDB /* taggrCellPickerTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = taggrCellPickerTextField.h; sourceTree = "<group>"; };
 		794ADC14140BD92F0095FEDB /* taggrCellPickerTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = taggrCellPickerTextField.m; sourceTree = "<group>"; };
+		797E2994145492F600E64287 /* Taggr.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Taggr.entitlements; sourceTree = "<group>"; };
+		797E2996145494CA00E64287 /* TaggrIcon57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TaggrIcon57.png; sourceTree = "<group>"; };
+		797E2997145494CA00E64287 /* TaggrIcon72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TaggrIcon72.png; sourceTree = "<group>"; };
+		797E2998145494CA00E64287 /* TaggrIcon114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TaggrIcon114.png; sourceTree = "<group>"; };
 		79AA6AC1140651790088E087 /* tagViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tagViewController.h; sourceTree = "<group>"; };
 		79AA6AC2140651790088E087 /* tagViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = tagViewController.m; sourceTree = "<group>"; };
 		79ADA65D141AF30400ED2651 /* taggrDateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = taggrDateViewController.h; sourceTree = "<group>"; };
@@ -344,6 +351,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				797E2994145492F600E64287 /* Taggr.entitlements */,
 				2860E386111B897F00E27156 /* iPhone */,
 				29B97317FDCFA39411CA2CEA /* iPad */,
 				28EEBF621118D79A00187D67 /* Shared */,
@@ -357,6 +365,7 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
+				797E2995145494BA00E64287 /* Resources */,
 				68BFDAB4134028D5002AB719 /* Three20.bundle */,
 				68BFD94C13400D41002AB719 /* Three20Core.xcodeproj */,
 				68BFD94F13400D41002AB719 /* Three20Network.xcodeproj */,
@@ -499,6 +508,16 @@
 			children = (
 			);
 			name = "Preloaded DB";
+			sourceTree = "<group>";
+		};
+		797E2995145494BA00E64287 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				797E2996145494CA00E64287 /* TaggrIcon57.png */,
+				797E2997145494CA00E64287 /* TaggrIcon72.png */,
+				797E2998145494CA00E64287 /* TaggrIcon114.png */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 		79B17616140D0E4C000D6EC5 /* Tag Discovery */ = {
@@ -757,6 +776,9 @@
 				28AD733F0D9D9553002E5188 /* MainWindow_iPad.xib in Resources */,
 				2860E38B111B897F00E27156 /* MainWindow_iPhone.xib in Resources */,
 				68BFDAB5134028D5002AB719 /* Three20.bundle in Resources */,
+				797E2999145494CA00E64287 /* TaggrIcon57.png in Resources */,
+				797E299A145494CA00E64287 /* TaggrIcon72.png in Resources */,
+				797E299B145494CA00E64287 /* TaggrIcon114.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -835,7 +857,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Alexander List (78XYB83J8Z)";
+				CODE_SIGN_ENTITLEMENTS = Taggr.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Alexander List (76TLAY9W6F)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -852,7 +875,7 @@
 					"-all_load",
 				);
 				PRODUCT_NAME = Taggr;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "400AE318-463A-4BA0-9763-B89A8779AE28";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "5369D21D-081F-474C-81DC-DBC5580D2911";
 			};
 			name = Debug;
 		};
@@ -860,6 +883,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_ENTITLEMENTS = Taggr.entitlements;
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Taggr_Prefix.pch;
@@ -896,6 +920,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_ENTITLEMENTS = Taggr.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Alexander List";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
