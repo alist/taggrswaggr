@@ -835,6 +835,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Alexander List (78XYB83J8Z)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -851,6 +852,7 @@
 					"-all_load",
 				);
 				PRODUCT_NAME = Taggr;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "400AE318-463A-4BA0-9763-B89A8779AE28";
 			};
 			name = Debug;
 		};
