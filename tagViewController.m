@@ -73,7 +73,7 @@
 
 
 -(void) refreshPickerTags{
-	[_explicitTagsField removeAllCells];
+	[_explicitTagsField.tokenField.tokensArray removeAllObjects];
 	
 	NSMutableArray *	explicitTagNames	=	[NSMutableArray array];
 	for (tag * explicit in _repTag.explicitTags){
@@ -92,15 +92,10 @@
 	//manipulations
 	if (_explicitTagsField == nil){
 		_explicitTagsField	=	[[taggrCellPickerTextField alloc] initWithFrame:CGRectMake(0, 0, 320, 40)];
-		_explicitTagsField.autocorrectionType = UITextAutocorrectionTypeNo;
-		_explicitTagsField.autocapitalizationType = UITextAutocapitalizationTypeNone;
-		_explicitTagsField.rightViewMode = UITextFieldViewModeAlways;
-		tagTTDataSource *			dataSource					=	[[tagTTDataSource alloc] init];
-		[_explicitTagsField setDataSource:dataSource];
-		SRELS(dataSource);
+//		_explicitTagsField.autocorrectionType = UITextAutocorrectionTypeNo;
+//		_explicitTagsField.autocapitalizationType = UITextAutocapitalizationTypeNone;
+//		_explicitTagsField.rightViewMode = UITextFieldViewModeAlways;
 		[_explicitTagsField setTaggrCellPickerDelegate:self];
-		[_explicitTagsField setReturnKeyType:UIReturnKeyDone];
-		_explicitTagsField.autoresizingMask = UIViewAutoresizingFlexibleWidth;
 		[_explicitTagsField sizeToFit];
 	}
 		

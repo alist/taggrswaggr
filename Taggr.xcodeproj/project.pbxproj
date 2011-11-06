@@ -46,6 +46,7 @@
 		797E299B145494CA00E64287 /* TaggrIcon114.png in Resources */ = {isa = PBXBuildFile; fileRef = 797E2998145494CA00E64287 /* TaggrIcon114.png */; };
 		79AA6AC3140651790088E087 /* tagViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79AA6AC2140651790088E087 /* tagViewController.m */; };
 		79ADA65F141AF30400ED2651 /* taggrDateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79ADA65E141AF30400ED2651 /* taggrDateViewController.m */; };
+		79EBFBDE1466D876006BF5BD /* TITokenFieldView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79EBFBDD1466D876006BF5BD /* TITokenFieldView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -285,6 +286,8 @@
 		79AA6AC2140651790088E087 /* tagViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = tagViewController.m; sourceTree = "<group>"; };
 		79ADA65D141AF30400ED2651 /* taggrDateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = taggrDateViewController.h; sourceTree = "<group>"; };
 		79ADA65E141AF30400ED2651 /* taggrDateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = taggrDateViewController.m; sourceTree = "<group>"; };
+		79EBFBDC1466D876006BF5BD /* TITokenFieldView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TITokenFieldView.h; sourceTree = "<group>"; };
+		79EBFBDD1466D876006BF5BD /* TITokenFieldView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TITokenFieldView.m; sourceTree = "<group>"; };
 		79F562E11418F92C00CFB103 /* Taggr v2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Taggr v2.xcdatamodel"; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Taggr-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Taggr-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -546,8 +549,7 @@
 		79B17618140D0E69000D6EC5 /* Support */ = {
 			isa = PBXGroup;
 			children = (
-				794ADC13140BD92F0095FEDB /* taggrCellPickerTextField.h */,
-				794ADC14140BD92F0095FEDB /* taggrCellPickerTextField.m */,
+				79EBFBDF1466D97C006BF5BD /* Tags */,
 				79418104140ED54A000E0113 /* editContactWithTagViewController.h */,
 				79418105140ED54A000E0113 /* editContactWithTagViewController.m */,
 				7941810B1412CFED000E0113 /* viewContactWithTagViewController.h */,
@@ -556,6 +558,17 @@
 				79491D2614200B7700B05BA2 /* editTagDateViewController.m */,
 			);
 			name = Support;
+			sourceTree = "<group>";
+		};
+		79EBFBDF1466D97C006BF5BD /* Tags */ = {
+			isa = PBXGroup;
+			children = (
+				79EBFBDC1466D876006BF5BD /* TITokenFieldView.h */,
+				79EBFBDD1466D876006BF5BD /* TITokenFieldView.m */,
+				794ADC13140BD92F0095FEDB /* taggrCellPickerTextField.h */,
+				794ADC14140BD92F0095FEDB /* taggrCellPickerTextField.m */,
+			);
+			name = Tags;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -805,6 +818,7 @@
 				7941810D1412CFEE000E0113 /* viewContactWithTagViewController.m in Sources */,
 				79ADA65F141AF30400ED2651 /* taggrDateViewController.m in Sources */,
 				79491D2714200B7700B05BA2 /* editTagDateViewController.m in Sources */,
+				79EBFBDE1466D876006BF5BD /* TITokenFieldView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -283,6 +283,14 @@
 	return [NSIndexPath indexPathForRow:0 inSection:0];
 }
 
+-(NSArray*)	namesOfAllCurrentTags{
+	NSMutableArray * tagNames	=	[NSMutableArray arrayWithCapacity:[[_fetchController fetchedObjects] count]];
+	for (tag * nextTag in [_fetchController fetchedObjects]){
+		[tagNames addObject:[nextTag tagName]];
+	}
+	return tagNames;
+}
+
 #pragma mark -
 #pragma mark TTTableViewDelegate
 //- (NSString*)titleForEmpty{

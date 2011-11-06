@@ -23,12 +23,40 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "taggrCellPickerTextField.m"
-         timestampString = "338777954.551811"
+         timestampString = "342287538.946187"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "236"
-         endingLineNumber = "236"
+         startingLineNumber = "270"
+         endingLineNumber = "270"
          landmarkName = "-addNewTag"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "taggrCellPickerTextField.m"
+         timestampString = "342287538.946187"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "139"
+         endingLineNumber = "139"
+         landmarkName = "-tokenFieldShouldReturn:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "taggrCellPickerTextField.m"
+         timestampString = "342287527.764413"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "134"
+         endingLineNumber = "134"
+         landmarkName = "-modelDidChange:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
