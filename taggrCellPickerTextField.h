@@ -8,9 +8,6 @@
 
 #import "TTPickerTextField.h"
 #import "tag.h"
-#import "TITokenFieldView.h"
-#import "tagTTDataSource.h"
-
 @class taggrCellPickerTextField;
 
 @protocol taggrCellPickerTextFieldDelegate <NSObject>
@@ -24,20 +21,15 @@
 @end
 
 
-@interface taggrCellPickerTextField : TITokenFieldView <taggrCellPickerTextFieldDelegate, TITokenFieldViewDelegate, TTModelDelegate>{
-	id<taggrCellPickerTextFieldDelegate>	_taggrCellPickerDelegate;
-	
-	tagTTDataSource	*						_dataSource;
+@interface taggrCellPickerTextField : TTPickerTextField <taggrCellPickerTextFieldDelegate, TTTextEditorDelegate, UITextFieldDelegate>{
+	id<taggrCellPickerTextFieldDelegate> _taggrCellPickerDelegate;
 }
 
-@property (nonatomic, assign) id<taggrCellPickerTextFieldDelegate>	taggrCellPickerDelegate;
-@property (nonatomic, retain) TTTableViewDataSource	*				dataSource;
-
+@property (nonatomic, assign) id<taggrCellPickerTextFieldDelegate> taggrCellPickerDelegate;
 
 -(void) openTagWithString:(NSString*)tagName;
 
 - (void)addCellsWithObjects:(NSArray*)objects;
-- (void)addCellWithObject:(id)object;
 
 -(void) addNewTag;
 @end

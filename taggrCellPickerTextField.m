@@ -10,12 +10,13 @@
 #import "Three20UI/TTPickerViewCell.h"
 #import "Three20.h"
 #import "TTNavigator.h"
+#import "tagTTDataSource.h"
 #import "AppDelegate_Shared.h"
 
 @class taggrNameViewController;
 
 @implementation taggrCellPickerTextField
-@synthesize taggrCellPickerDelegate = _taggrCellPickerDelegate, dataSource = _dataSource;
+@synthesize taggrCellPickerDelegate = _taggrCellPickerDelegate;
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -23,21 +24,14 @@
         // Initialization code here.
 		[self setTaggrCellPickerDelegate:self];
 		[self setDelegate:self];
-		[self.tokenField setClearButtonMode:UITextFieldViewModeWhileEditing];
-		self.tokenField.autocorrectionType = UITextAutocorrectionTypeYes;
-		self.tokenField.autocapitalizationType = UITextAutocapitalizationTypeSentences;
-		self.tokenField.rightViewMode = UITextFieldViewModeAlways;
-		[self.tokenField setReturnKeyType:UIReturnKeyDone];
-		
-		tagTTDataSource *			dataSource					=	[[tagTTDataSource alloc] init];
-		[[dataSource delegates] addObject:self];
-		[self setDataSource:dataSource];
-		SRELS(dataSource);
-
-		
-//		self.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-//		[self sizeToFit];
-//		[self setSearchesAutomatically:TRUE];
+		[self setClearButtonMode:UITextFieldViewModeWhileEditing];
+		self.autocorrectionType = UITextAutocorrectionTypeYes;
+		self.autocapitalizationType = UITextAutocapitalizationTypeSentences;
+		self.rightViewMode = UITextFieldViewModeAlways;
+		[self setReturnKeyType:UIReturnKeyDone];
+		self.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+		[self sizeToFit];
+		[self setSearchesAutomatically:TRUE];
     }
     
     return self;
@@ -50,33 +44,32 @@
 -(void) dealloc{
 	
 	_taggrCellPickerDelegate		= nil;
-	SRELS(_dataSource);
 
 	[super dealloc];
 }
 
-//- (void)touchesBegan:(NSSet*)touches withEvent:(UIEvent*)event {
-//	if (_dataSource) {
-//		UITouch* touch = [touches anyObject];
-//		if (touch.view == self) {
-//			self.selectedCell = nil;
-//			
-//		} else {
-//			if ([touch.view isKindOfClass:[TTPickerViewCell class]]) {
-//				if (self.selectedCell == touch.view){
-//					[self taggrCellPickerTextFieldDidTapSelectedCellWithObject:self.selectedCell.object withPicker:self];
-//				}else{
-//					self.selectedCell = (TTPickerViewCell*)touch.view;
-//					[self taggrCellPickerTextFieldDidSelectCellWithObject:self.selectedCell.object withPicker:self];
-//				}
-//				[self becomeFirstResponder];
-//			}
-//		}
-//	}
-//	
-//	[super touchesBegan:touches withEvent:event];
-//	
-//}
+- (void)touchesBegan:(NSSet*)touches withEvent:(UIEvent*)event {
+	if (_dataSource) {
+		UITouch* touch = [touches anyObject];
+		if (touch.view == self) {
+			self.selectedCell = nil;
+			
+		} else {
+			if ([touch.view isKindOfClass:[TTPickerViewCell class]]) {
+				if (self.selectedCell == touch.view){
+					[self taggrCellPickerTextFieldDidTapSelectedCellWithObject:self.selectedCell.object withPicker:self];
+				}else{
+					self.selectedCell = (TTPickerViewCell*)touch.view;
+					[self taggrCellPickerTextFieldDidSelectCellWithObject:self.selectedCell.object withPicker:self];
+				}
+				[self becomeFirstResponder];
+			}
+		}
+	}
+	
+	[super touchesBegan:touches withEvent:event];
+	
+}
 
 - (void)addCellsWithObjects:(NSArray*)objects{
 	for (id object in objects){
@@ -95,7 +88,7 @@
 		cellString = object;
 	
 	if (StringHasText(cellString)){
-		[self.tokenField addToken:cellString];
+		[super addCellWithObject:cellString];
 	}
 }
 
@@ -129,33 +122,6 @@
 	}
 }
 
-#pragma mark - TTModelDelegate
--(void)modelDidChange:(TTModel*)model{
-	[self setSourceArray:[_dataSource namesOfAllCurrentTags]];
-}
-
-#pragma mark - TITokenFieldViewDelegate
-- (BOOL)tokenFieldShouldReturn:(TITokenField *)tokenField{
-	return TRUE;
-}
-
-- (void)tokenField:(TITokenField *)tokenField didChangeToFrame:(CGRect)frame{
-	
-}
-- (void)tokenFieldTextDidChange:(TITokenField *)tokenField{
-	[_dataSource search:[self.tokenField text]];
-}
-- (void)tokenField:(TITokenField *)tokenField didFinishSearch:(NSArray *)matches{
-	
-}
-
-- (UITableViewCell *)tokenField:(TITokenField *)tokenField resultsTableView:(UITableView *)tableView cellForObject:(id)object{
-	return [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"tag"] autorelease];
-}
-- (CGFloat)tokenField:(TITokenField *)tokenField resultsTableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-	return 40;
-}
-
 
 #pragma mark UITableView
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath{
@@ -175,46 +141,46 @@
 //	return CGRectUnion(searchRect, CGRectApplyAffineTransform(searchRect, CGAffineTransformMakeTranslation(0, 40)));
 //}
 
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+	
+	if ([self selectedCell] != nil){
+		[self setSelectedCell:nil];
+		return FALSE;
+	}
+	
+	NSString * trimmedTagString	=	[[self text] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+	if (StringHasText(trimmedTagString) == NO){
+		[self resignFirstResponder];
+		return FALSE;
+	}
+	
+	tag * matchTag = [tagTTDataSource tagMatchingTagName:trimmedTagString];
+	if ([[self cells] containsObject:[matchTag tagName]])
+		return FALSE;
+	
+	if (matchTag){
+		[self addCellWithObject:[matchTag tagName]];
+		[self setText:@" "];
+	}else{
+		[self addNewTag];
+		[self addCellWithObject:trimmedTagString];
+		[self setText:@" "];
+	}
+	
+	if ([_taggrCellPickerDelegate respondsToSelector:@selector(taggrCellPickerModifiedCells:)]) {
+		[_taggrCellPickerDelegate taggrCellPickerModifiedCells:self];
+	}
 
-
-//- (BOOL)textFieldShouldReturn:(UITextField *)textField{
-//	
-//	if ([self selectedCell] != nil){
-//		[self setSelectedCell:nil];
-//		return FALSE;
-//	}
-//	
-//	NSString * trimmedTagString	=	[[self text] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-//	if (StringHasText(trimmedTagString) == NO){
-//		[self resignFirstResponder];
-//		return FALSE;
-//	}
-//	
-//	tag * matchTag = [tagTTDataSource tagMatchingTagName:trimmedTagString];
-//	if ([[self cells] containsObject:[matchTag tagName]])
-//		return FALSE;
-//	
-//	if (matchTag){
-//		[self addCellWithObject:[matchTag tagName]];
-//		[self setText:@" "];
-//	}else{
-//		[self addNewTag];
-//		[self addCellWithObject:trimmedTagString];
-//		[self setText:@" "];
-//	}
-//	
-//	if ([_taggrCellPickerDelegate respondsToSelector:@selector(taggrCellPickerModifiedCells:)]) {
-//		[_taggrCellPickerDelegate taggrCellPickerModifiedCells:self];
-//	}
-//
-//	
-//	return FALSE;
-//	
-//}
+	
+	return FALSE;
+	
+}
 -(void)textFieldDidBeginEditing:(UITextField *)textField{
+	[self showSearchResults:TRUE];
 }
 
 -(void) textFieldDidEndEditing:(UITextField *)textField{
+	[self showSearchResults:NO];
 }
 
 -(void) textFieldDidResize:(TTPickerTextField*)field{
@@ -224,8 +190,8 @@
 }
 
 -(BOOL) textFieldShouldClear:(UITextField *)textField{
-	[self.tokenField.tokensArray removeAllObjects];
-	[self.tokenField setText:@""];
+	[self removeAllCells];
+	[self setText:@""];
 	if ([_taggrCellPickerDelegate respondsToSelector:@selector(taggrCellPickerModifiedCells:)]) {
 		[_taggrCellPickerDelegate taggrCellPickerModifiedCells:self];
 	}
@@ -249,7 +215,7 @@
 }
 
 -(void) addNewTag{
-	NSString * trimmedTagString	=	[[self.tokenField text] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+	NSString * trimmedTagString	=	[[self text] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 	
 	if (StringHasText(trimmedTagString)){		
 		tag* newTag				=	[NSEntityDescription insertNewObjectForEntityForName:@"tag" inManagedObjectContext:[[AppDelegate_Shared sharedDelegate] managedObjectContext]];

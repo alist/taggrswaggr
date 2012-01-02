@@ -45,8 +45,6 @@ typedef enum taggrSortType{
 - (void)searchWithExplicitlyReferencedTags: (NSSet*) referencedTags searchText:(NSString*) searchText;
 - (void)search:	(NSString*)text;
 
--(NSArray*)	namesOfAllCurrentTags;
-
 +(tag*)		tagMatchingTagName:(NSString*)tagName;
 
 +(NSSet*)	tagsMatchingNames:(NSSet*)tagNames;
